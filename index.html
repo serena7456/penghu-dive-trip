@@ -1,493 +1,411 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🦈 澎湖南方四島潛旅 3 天手札</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", sans-serif; }
-  button { font-family: inherit; }
-  #root { min-height: 100vh; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",sans-serif;background:#f0f4f8}
+button{font-family:inherit;cursor:pointer}
+a{color:inherit}
+.wrap{max-width:480px;margin:0 auto;min-height:100vh;background:#f0f4f8}
+@media(min-width:640px){.wrap{max-width:700px}}
+@media(min-width:1024px){.wrap{max-width:900px}}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#0c2461 0%,#1e3799 30%,#0984e3 65%,#00cec9 100%);padding:48px 24px 36px;text-align:center;position:relative;overflow:hidden;border-radius:0 0 32px 32px;color:#fff}
+.hero .deco1{position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06)}
+.hero .deco2{position:absolute;bottom:-30px;left:-40px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.04)}
+.hero-emoji{font-size:48px;margin-bottom:8px}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border-radius:20px;padding:4px 16px;font-size:13px;letter-spacing:1px;margin-bottom:10px}
+.hero-date{font-size:12px;opacity:.8;letter-spacing:2px;margin-bottom:6px}
+.hero h1{font-size:24px;font-weight:800;margin:10px 0 6px;line-height:1.3}
+.hero-tagline{font-size:14px;opacity:.88;margin:0 0 20px;line-height:1.6}
+.hero-info{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hero-info span{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border-radius:12px;padding:8px 14px;font-size:13px;font-weight:500}
+.hero-greeting{margin-top:18px;font-size:14px;font-weight:600;opacity:.9}
+@media(min-width:640px){.hero{padding:56px 36px 44px}.hero h1{font-size:30px}.hero-tagline{font-size:15px}.hero-info span{padding:10px 18px;font-size:14px}}
+@media(min-width:1024px){.hero{padding:64px 48px 52px}.hero-emoji{font-size:64px}.hero h1{font-size:36px}.hero-tagline{font-size:16px;max-width:600px;margin-left:auto;margin-right:auto}.hero-greeting{font-size:18px}}
+
+/* Sections */
+.sec{padding:8px 20px 16px}
+.sec h3{font-size:16px;font-weight:700;color:#1a1a2e;margin:0 0 12px}
+@media(min-width:640px){.sec{padding:8px 28px 16px}.sec h3{font-size:17px}}
+@media(min-width:1024px){.sec{padding:12px 36px 20px}.sec h3{font-size:18px}}
+
+/* Cards */
+.card{background:#fff;border-radius:14px;padding:14px 16px;box-shadow:0 2px 8px rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.04)}
+@media(min-width:640px){.card{padding:16px 20px}}
+@media(min-width:1024px){.card{padding:18px 24px}}
+
+/* Weather */
+.wx-now{background:linear-gradient(135deg,#0c2461 0%,#1e3799 30%,#0984e3 65%,#00cec9 100%);border-radius:14px;padding:16px 18px;color:#fff;display:flex;align-items:center;gap:16px}
+.wx-now .icon{font-size:42px}
+.wx-now .temp{font-size:32px;font-weight:800;line-height:1.1}
+.wx-row{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.wx-day{flex:0 0 auto;min-width:70px;background:#fff;border-radius:12px;padding:10px 8px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04)}
+.wx-day.today{background:#e8eef8;border:2px solid #0c2461}
+
+/* Fee */
+.fee-row{display:flex;gap:10px;flex-direction:column}
+@media(min-width:640px){.fee-row{flex-direction:row}}
+.fee-row>div{flex:1;border-radius:14px;padding:14px 16px}
+.fee-inc{background:#e8f5e9;border:1px solid #c8e6c9}
+.fee-exc{background:#fce4ec;border:1px solid #f8bbd0}
+
+/* Qual */
+.qual-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* Tabs */
+.tabs{display:flex;padding:16px 16px 0;overflow-x:auto}
+.tab{flex:1 0 auto;min-width:80px;padding:12px 8px 10px;border:none;border-bottom:3px solid transparent;background:transparent;border-radius:12px 12px 0 0;text-align:center;transition:all .25s}
+.tab.active{border-bottom-color:#e67e22;background:#fef4e8}
+.tab-label{font-size:11px;font-weight:700;letter-spacing:1px;color:#5a6a7a}
+.tab.active .tab-label{color:#e67e22}
+.tab-date{font-size:12px;color:#5a6a7a;margin-top:2px}
+.tab.active .tab-date{color:#1a1a2e}
+.tab-dive{font-size:10px;color:#5a6a7a;margin-top:2px}
+.tab.active .tab-dive{color:#0c2461}
+
+/* Day header */
+.day-badge{background:#e67e22;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:8px;display:inline-block}
+.day-title{font-size:22px;font-weight:800;color:#1a1a2e;margin:8px 0 4px}
+.day-sub{font-size:14px;color:#5a6a7a;line-height:1.5}
+@media(min-width:640px){.day-title{font-size:26px}.day-sub{font-size:15px}}
+@media(min-width:1024px){.day-title{font-size:30px}.day-sub{font-size:16px}}
+.stats{display:flex;gap:8px;margin-top:16px}
+.stat{flex:1;background:#e8eef8;border-radius:12px;padding:10px 12px;text-align:center}
+.stat-icon{font-size:16px;margin-bottom:2px}
+.stat-val{font-size:15px;font-weight:700;color:#0c2461}
+.stat-lbl{font-size:11px;color:#5a6a7a;margin-top:2px}
+@media(min-width:1024px){.stat{padding:14px 20px}.stat-icon{font-size:22px}.stat-val{font-size:20px}.stat-lbl{font-size:13px}}
+
+/* Map */
+.map-wrap{display:block}
+@media(min-width:1024px){.map-wrap{display:flex;gap:16px}}
+.map-iframe{border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);margin-bottom:12px;border:1px solid rgba(0,0,0,.06)}
+@media(min-width:1024px){.map-iframe{flex:1.2;margin-bottom:0}}
+.map-route{flex:.8}
+.route-num{width:24px;height:24px;border-radius:50%;background:#0c2461;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.route-line{width:2px;height:16px;background:rgba(12,36,97,.2);margin:0 auto}
+.map-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:10px 16px;background:#0c2461;color:#fff;border-radius:10px;text-decoration:none;font-size:13px;font-weight:600}
+
+/* Timeline */
+.tl-line{position:absolute;left:44px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,rgba(12,36,97,.1),rgba(12,36,97,.25),rgba(12,36,97,.1));border-radius:1px}
+@media(min-width:640px){.tl-line{left:50px}}
+@media(min-width:1024px){.tl-line{left:56px}}
+.tl-item{display:flex;gap:14px;margin-bottom:4px;position:relative;align-items:flex-start}
+.tl-time{width:36px;font-size:12px;font-weight:700;color:#0c2461;padding-top:14px;text-align:right;font-variant-numeric:tabular-nums;flex-shrink:0}
+@media(min-width:640px){.tl-time{width:42px;font-size:13px}}
+@media(min-width:1024px){.tl-time{width:48px;font-size:14px}.tl-item{gap:18px}}
+.tl-dot{width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #0c2461;flex-shrink:0;margin-top:14px;position:relative;z-index:1}
+.tl-dot.dive{background:#0c2461}
+.tl-card{flex:1;background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04)}
+.tl-card.dive{background:#e8eef8;border:2px solid rgba(12,36,97,.2)}
+@media(min-width:1024px){.tl-card{padding:16px 22px}}
+.tl-icon{font-size:18px}
+.tl-title{font-size:14px;font-weight:700;color:#1a1a2e}
+@media(min-width:1024px){.tl-icon{font-size:22px}.tl-title{font-size:16px}}
+.tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:6px;display:inline-block}
+.tl-desc{font-size:13px;color:#5a6a7a;margin-top:4px;line-height:1.5}
+@media(min-width:1024px){.tl-desc{font-size:15px}}
+
+/* Food */
+.food-card{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.food-name{font-size:15px;font-weight:700;color:#1a1a2e;margin-bottom:3px}
+.food-desc{font-size:13px;color:#5a6a7a;line-height:1.4}
+.food-price{font-size:13px;font-weight:600;color:#e67e22;text-align:right}
+.food-rating{font-size:11px;color:#5a6a7a}
+
+/* Tips */
+.tips-box{background:#e8eef8;border-radius:14px;padding:14px 16px;border:1px solid rgba(12,36,97,.12)}
+.tip-item{font-size:13px;color:#1a1a2e;line-height:1.6}
+.tip-item+.tip-item{margin-top:8px;padding-top:8px;border-top:1px solid rgba(12,36,97,.08)}
+
+/* Packing */
+.pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(min-width:640px){.pack-grid{grid-template-columns:1fr 1fr 1fr}}
+@media(min-width:1024px){.pack-grid{grid-template-columns:1fr 1fr 1fr 1fr}}
+.pack-item{background:#fff;border-radius:10px;padding:10px 12px;font-size:13px;color:#1a1a2e;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04)}
+
+/* Dive note */
+.dive-note{background:rgba(230,126,34,.07);border:1px solid rgba(230,126,34,.2);border-radius:12px;padding:12px 16px;display:flex;gap:10px;align-items:flex-start}
+.dive-note p{font-size:13px;color:#1a1a2e;margin:0;line-height:1.6}
+
+/* Safety toggle */
+.safety-toggle{width:100%;background:#fff;border:1px solid rgba(12,36,97,.15);border-radius:14px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.safety-arrow{font-size:18px;color:#0c2461;transition:transform .3s;display:inline-block}
+.safety-body{margin-top:10px;background:#fff;border-radius:14px;border:1px solid rgba(12,36,97,.08);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.safety-intro{padding:14px 16px;background:rgba(230,126,34,.04);border-bottom:1px solid rgba(12,36,97,.06);font-size:13px;font-weight:600;color:#1a1a2e;line-height:1.6}
+.safety-sec{border-bottom:1px solid rgba(12,36,97,.06)}
+.safety-sec:last-child{border-bottom:none}
+.safety-sec-toggle{width:100%;background:transparent;border:none;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:700;color:#1a1a2e}
+.safety-sec-arrow{font-size:12px;color:#5a6a7a;transition:transform .2s;display:inline-block}
+.safety-items{padding:0 16px 14px}
+.safety-item{font-size:13px;color:#5a6a7a;line-height:1.7;padding:6px 0 6px 8px;border-left:3px solid rgba(12,36,97,.12)}
+.safety-item+.safety-item{margin-top:6px;padding-top:6px;border-top:1px solid rgba(12,36,97,.04)}
+
+/* Closing */
+.closing{background:linear-gradient(135deg,#0c2461 0%,#1e3799 30%,#0984e3 65%,#00cec9 100%);border-radius:18px;padding:24px 20px;text-align:center;color:#fff}
+.closing h3{font-size:18px;font-weight:700;margin:0 0 10px}
+.closing p{font-size:14px;opacity:.9;margin:0 0 16px;line-height:1.7}
+.closing .signoff{font-size:16px;font-weight:700}
+
+.footer{text-align:center;padding:16px 20px 32px;font-size:11px;color:#5a6a7a}
+.divider{height:1px;background:linear-gradient(to right,transparent,rgba(12,36,97,.12),transparent);margin:0 20px}
+.hidden{display:none}
 </style>
-<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-<div id="root"></div>
-<script type="text/babel">
-
+<div class="wrap" id="app"></div>
+<script>
 // ═══════════════════════════════════════════════════════════════════
 // 🔧🔧🔧 【資料區】— 只要改這裡就能換行程！🔧🔧🔧
-//
-//   📝 編輯方式：
-//   1. 用 VS Code 或任何文字編輯器打開這個 index.html
-//   2. 修改下方 TRIP 裡面的文字（標題、時間、描述…）
-//   3. 存檔後，在瀏覽器重新整理就能看到效果
-//   4. 部署：整個檔案丟到 GitHub Pages 就完成！
-//
-//   ⚠️ 注意：
-//   - 文字要用 "雙引號" 包起來
-//   - 每一項之間要有 , 逗號
-//   - emoji 可以直接貼上
-//
 // ═══════════════════════════════════════════════════════════════════
-
-const TRIP = {
-  // ── 基本資訊 ──
-  title: "探索南方四島",
-  subtitle: "🦈 澎湖南方四島潛旅 3 天手札",
-  tagline: "一起探索全台灣生態最好的澎湖南方四島！🤟🦈🌅",
-  dateRange: "2026 / 7/17 – 7/19",
-
-  // ── 天氣查詢座標（改目的地就改這裡）──
-  location: { lat: 23.25, lng: 119.60, name: "澎湖南方四島" },
-
-  // ── Hero 區 ──
-  hero: { emoji: "🦈", greeting: "潛進蔚藍，探索台灣最美海底！" },
-
-  // ── 快速資訊標籤 ──
-  info: [
-    { icon: "🤿", text: "3 天 7 潛（空氣）" },
-    { icon: "🚢", text: "艾妲號・船宿個人艙" },
-    { icon: "🌊", text: "25～26°C 夏季海況" },
-    { icon: "📍", text: "嘉義布袋 ⇄ 南方四島" },
+const TRIP={
+  title:"探索南方四島",subtitle:"🦈 澎湖南方四島潛旅 3 天手札",
+  tagline:"一起探索全台灣生態最好的澎湖南方四島！🤟🦈🌅",
+  dateRange:"2026 / 7/17 – 7/19",
+  location:{lat:23.25,lng:119.60,name:"澎湖南方四島"},
+  hero:{emoji:"🦈",greeting:"潛進蔚藍，探索台灣最美海底！"},
+  info:[
+    {icon:"🤿",text:"3 天 7 潛（空氣）"},{icon:"🚢",text:"艾妲號・船宿個人艙"},
+    {icon:"🌊",text:"28～31°C 夏季海況"},{icon:"📍",text:"嘉義布袋 ⇄ 南方四島"},
   ],
-
-  // ── 配色主題（可自行調色）──
-  theme: {
-    primary: "#0c2461",
-    primaryLight: "#e8eef8",
-    accent: "#e67e22",
-    accentLight: "#fef4e8",
-    bg: "#f0f4f8",
-    card: "#ffffff",
-    text: "#1a1a2e",
-    textLight: "#5a6a7a",
-    success: "#27ae60",
-    heroGradient: "linear-gradient(135deg, #0c2461 0%, #1e3799 30%, #0984e3 65%, #00cec9 100%)",
+  fees:{
+    included:["艾妲號個人艙 2 晚","3 天 7 潛（空氣瓶）","潛水期間早餐 ×2 + 午餐 ×3 + 晚餐 ×2","嘉義公主遊艇碼頭 ⇄ 澎湖 交通船","旅行社責任險 250 萬"],
+    excluded:["裝備租借、個人消費","來回高鐵票","旅途中額外加潛","陸上自選行程","未列在「費用包含」的費用"],
   },
-
-  // ── 費用明細 ──
-  fees: {
-    included: [
-      "艾妲號個人艙 2 晚",
-      "3 天 7 潛（空氣瓶）",
-      "潛水期間早餐 ×2 + 午餐 ×3 + 晚餐 ×2",
-      "嘉義公主遊艇碼頭 ⇄ 澎湖 交通船",
-      "旅行社責任險 250 萬",
-    ],
-    excluded: [
-      "裝備租借、個人消費",
-      "來回高鐵票",
-      "旅途中額外加潛",
-      "陸上自選行程",
-      "未列在「費用包含」的費用",
-    ],
+  qualification:{
+    title:"建議潛水資格",
+    items:[{icon:"🎓",text:"進階潛水員（AOWD）"},{icon:"📝",text:"或具備深潛＋船潛專長視同"},{icon:"🔢",text:"50 支以上潛水經驗"}],
+    note:"潛水店將依照大家能力安排潛點",
   },
-
-  // ── 資格要求 ──
-  qualification: {
-    title: "建議潛水資格",
-    items: [
-      { icon: "🎓", text: "進階潛水員（AOWD）" },
-      { icon: "🫧", text: "高氧執照（EAN）" },
-      { icon: "📝", text: "或 具備深潛、船潛專長視同" },
-      { icon: "🔢", text: "50 支以上潛水經驗" },
-    ],
-    note: "潛水店將依照大家能力安排潛點",
-  },
-
-  // ══════════════════════════════════════════
-  // ── 每日行程（最常需要修改的部分）──
-  // ══════════════════════════════════════════
-  days: [
-    // ────────── DAY 1 ──────────
-    {
-      date: "7/17（四）",
-      label: "DAY 1",
-      title: "嘉義出港・南方四島初潛",
-      subtitle: "登船啟航，直奔蔚藍深處 🚢 今日 2 潛",
-      diveCount: 2,
-      mapCenter: { lat: 23.32, lng: 119.90, zoom: 9 },
-      stats: [
-        { label: "今日潛數", value: "2 潛", icon: "🤿" },
-        { label: "航行距離", value: "~60 km", icon: "🚢" },
-        { label: "航程時間", value: "~2.5 hr", icon: "⏱️" },
+  days:[
+    {date:"7/17（四）",label:"DAY 1",title:"嘉義出港・南方四島初潛",subtitle:"登船啟航，直奔蔚藍深處 🚢 今日 2 潛",diveCount:2,
+      mapCenter:{lat:23.32,lng:119.90,zoom:9},
+      stats:[{label:"今日潛數",value:"2 潛",icon:"🤿"},{label:"航行距離",value:"~60 km",icon:"🚢"},{label:"航程時間",value:"~2.5 hr",icon:"⏱️"}],
+      schedule:[
+        {time:"08:50",title:"嘉義公主遊艇碼頭集合",icon:"📍",desc:"布袋港集合，找到艾妲號停靠位置",tag:"交通",coords:{lat:23.3748,lng:120.1625}},
+        {time:"09:00",title:"裝備組裝 & 上船",icon:"🧰",desc:"整理個人裝備、確認氣瓶、BCD、電腦錶設定",tag:"潛水",coords:{lat:23.3748,lng:120.1625}},
+        {time:"09:30",title:"啟航！前往南方四島",icon:"🚢",desc:"航程約 2～2.5 小時，可在船上休息或欣賞海景",tag:"交通",coords:{lat:23.32,lng:119.92}},
+        {time:"11:30",title:"第 1 潛｜東吉燈塔外礁 🫧",icon:"🤿",desc:"南方四島首潛！東吉嶼燈塔外側礁區，珊瑚覆蓋率極高，暖身適應船潛節奏",tag:"潛水",coords:{lat:23.2583,lng:119.6694}},
+        {time:"12:30",title:"午餐（船上簡餐）",icon:"🍱",desc:"水面休息，補充水分和能量",tag:"美食",coords:{lat:23.2583,lng:119.6694}},
+        {time:"14:00",title:"第 2 潛｜鋤頭嶼古城牆 🫧",icon:"🤿",desc:"鋤頭嶼古城牆地形，壯觀的岩壁結構搭配豐富軟珊瑚",tag:"潛水",coords:{lat:23.2583,lng:119.6361}},
+        {time:"16:00",title:"水面休息 & 自由時間",icon:"☀️",desc:"整理裝備、寫潛水日誌、在甲板上吹風看海",tag:"休息",coords:{lat:23.2400,lng:119.5500}},
+        {time:"17:30",title:"入港七美",icon:"🏝️",desc:"艾妲號停靠七美港，準備上岸",tag:"交通",coords:{lat:23.2069,lng:119.4289}},
+        {time:"18:30",title:"岸上晚餐（七美）",icon:"🦞",desc:"七美島上海鮮餐廳，享受在地鮮味",tag:"美食",coords:{lat:23.2069,lng:119.4289}},
+        {time:"20:00",title:"回船休息",icon:"🛏️",desc:"回到艾妲號個人艙，養精蓄銳迎接明天 3 潛日！",tag:"住宿",coords:{lat:23.2069,lng:119.4289}},
       ],
-      schedule: [
-        { time: "08:50", title: "嘉義公主遊艇碼頭集合", icon: "📍", desc: "布袋港集合，找到艾妲號停靠位置", tag: "交通", coords: { lat: 23.3748, lng: 120.1625 } },
-        { time: "09:00", title: "裝備組裝 & 上船", icon: "🧰", desc: "整理個人裝備、確認氣瓶、BCD、電腦錶設定", tag: "潛水", coords: { lat: 23.3748, lng: 120.1625 } },
-        { time: "09:30", title: "啟航！前往南方四島", icon: "🚢", desc: "航程約 2～2.5 小時，可在船上休息或欣賞海景", tag: "交通", coords: { lat: 23.32, lng: 119.92 } },
-        { time: "11:30", title: "第 1 潛｜東吉燈塔外礁 🫧", icon: "🤿", desc: "南方四島首潛！東吉嶼燈塔外側礁區，珊瑚覆蓋率極高，暖身適應船潛節奏", tag: "潛水", coords: { lat: 23.2583, lng: 119.6694 } },
-        { time: "12:30", title: "午餐（船上簡餐）", icon: "🍱", desc: "水面休息，補充水分和能量", tag: "美食", coords: { lat: 23.2583, lng: 119.6694 } },
-        { time: "14:00", title: "第 2 潛｜鋤頭嶼古城牆 🫧", icon: "🤿", desc: "鋤頭嶼古城牆地形，壯觀的岩壁結構搭配豐富軟珊瑚", tag: "潛水", coords: { lat: 23.2583, lng: 119.6361 } },
-        { time: "16:00", title: "水面休息 & 自由時間", icon: "☀️", desc: "整理裝備、寫潛水日誌、在甲板上吹風看海", tag: "休息", coords: { lat: 23.2400, lng: 119.5500 } },
-        { time: "17:30", title: "入港七美", icon: "🏝️", desc: "艾妲號停靠七美港，準備上岸", tag: "交通", coords: { lat: 23.2069, lng: 119.4289 } },
-        { time: "18:30", title: "岸上晚餐（七美）", icon: "🦞", desc: "七美島上海鮮餐廳，享受在地鮮味", tag: "美食", coords: { lat: 23.2069, lng: 119.4289 } },
-        { time: "20:00", title: "回船休息", icon: "🛏️", desc: "回到艾妲號個人艙，養精蓄銳迎接明天 3 潛日！", tag: "住宿", coords: { lat: 23.2069, lng: 119.4289 } },
-      ],
-      food: [
-        { name: "船上午餐", desc: "船上簡餐，方便水面休息時補給", price: "含在費用", rating: "🚢 船上" },
-        { name: "七美岸上晚餐", desc: "七美在地海鮮餐廳，新鮮漁獲", price: "含在費用", rating: "🏝️ 七美" },
-      ],
-      tips: [
-        "🕐 集合時間是 08:50，請提早抵達！遲到船不等人",
-        "🚗 嘉義公主遊艇碼頭有免費停車，自駕很方便",
-        "💊 會暈船的話，建議上船前 30 分鐘先吃暈船藥",
-        "🫧 第一潛先做好中性浮力 check，適應船潛節奏",
-        "🍽️ 早餐自理，建議在嘉義先吃飽再上船",
-      ],
+      food:[{name:"船上簡餐",desc:"艾妲號廚房準備，方便快速補充體力",price:"含在費用",rating:"🚢 船上"},{name:"七美岸上晚餐",desc:"七美在地海鮮餐廳，新鮮漁獲",price:"含在費用",rating:"🏝️ 七美"}],
+      tips:["🕐 集合時間是 08:50，請提早抵達！遲到船不等人","🚗 嘉義公主遊艇碼頭有免費停車，自駕很方便","💊 會暈船的話，建議上船前 30 分鐘先吃暈船藥","🫧 第一潛先做好中性浮力 check，適應船潛節奏","🍽️ 早餐自理，建議在嘉義先吃飽再上船"],
     },
-
-    // ────────── DAY 2 ──────────
-    {
-      date: "7/18（五）",
-      label: "DAY 2",
-      title: "潛好潛滿！三潛日",
-      subtitle: "上午兩潛、下午一潛，盡情探索南方四島海底世界 🐠",
-      diveCount: 3,
-      mapCenter: { lat: 23.24, lng: 119.58, zoom: 11 },
-      stats: [
-        { label: "今日潛數", value: "3 潛", icon: "🤿" },
-        { label: "累計潛數", value: "5 / 7", icon: "📊" },
-        { label: "水溫預估", value: "26~28°C", icon: "🌡️" },
+    {date:"7/18（五）",label:"DAY 2",title:"潛好潛滿！三潛日",subtitle:"上午兩潛、下午一潛，盡情探索南方四島海底世界 🐠",diveCount:3,
+      mapCenter:{lat:23.24,lng:119.58,zoom:11},
+      stats:[{label:"今日潛數",value:"3 潛",icon:"🤿"},{label:"累計潛數",value:"5 / 7",icon:"📊"},{label:"水溫預估",value:"26~28°C",icon:"🌡️"}],
+      schedule:[
+        {time:"06:30",title:"早餐（船上簡餐）",icon:"☀️",desc:"早起吃早餐，準備迎接充實的三潛日",tag:"美食",coords:{lat:23.2069,lng:119.4289}},
+        {time:"07:30",title:"出港前往潛點",icon:"🚢",desc:"離開七美港，前往今日潛點區域",tag:"交通",coords:{lat:23.2400,lng:119.5500}},
+        {time:"08:30",title:"第 3 潛｜沈船 🫧",icon:"🤿",desc:"清晨潛！探索水下沈船遺跡，能見度通常最佳的時段",tag:"潛水",coords:{lat:23.2583,lng:119.6694}},
+        {time:"10:00",title:"水面休息",icon:"☕",desc:"水面休息時間至少 1 小時，喝水、吃點心、聊潛水",tag:"休息",coords:{lat:23.2583,lng:119.6500}},
+        {time:"11:00",title:"第 4 潛｜二塭 🫧",icon:"🤿",desc:"二塭潛點，地形變化豐富，留意水流方向",tag:"潛水",coords:{lat:23.2639,lng:119.6472}},
+        {time:"12:30",title:"午餐（船上簡餐）",icon:"🍱",desc:"補充能量，好好休息，下午還有一潛",tag:"美食",coords:{lat:23.2500,lng:119.6000}},
+        {time:"14:30",title:"第 5 潛｜沈船 🫧",icon:"🤿",desc:"下午再訪沈船潛點，不同時段的光線帶來不一樣的水下氛圍",tag:"潛水",coords:{lat:23.2200,lng:119.5000}},
+        {time:"16:00",title:"裝備整理 & 自由時間",icon:"🧹",desc:"清洗裝備、寫潛水日誌、甲板上看夕陽",tag:"休息",coords:{lat:23.2069,lng:119.4289}},
+        {time:"17:30",title:"入港七美",icon:"🏝️",desc:"返回七美港停靠",tag:"交通",coords:{lat:23.2069,lng:119.4289}},
+        {time:"18:30",title:"岸上晚餐（七美）",icon:"🦞",desc:"第二晚七美晚餐，試試不同餐廳",tag:"美食",coords:{lat:23.2069,lng:119.4289}},
+        {time:"20:00",title:"自由活動",icon:"🌙",desc:"散步七美、觀星、船上歡唱 KTV 或打麻將",tag:"休息",coords:{lat:23.2069,lng:119.4289}},
       ],
-      schedule: [
-        { time: "06:30", title: "早餐（船上簡餐）", icon: "☀️", desc: "早起吃早餐，準備迎接充實的三潛日", tag: "美食", coords: { lat: 23.2069, lng: 119.4289 } },
-        { time: "07:30", title: "出港前往潛點", icon: "🚢", desc: "離開七美港，前往今日潛點區域", tag: "交通", coords: { lat: 23.2400, lng: 119.5500 } },
-        { time: "08:30", title: "第 3 潛｜沈船 🫧", icon: "🤿", desc: "清晨潛！探索水下沈船遺跡，能見度通常最佳的時段", tag: "潛水", coords: { lat: 23.2583, lng: 119.6694 } },
-        { time: "10:00", title: "水面休息", icon: "☕", desc: "水面休息時間至少 1 小時，喝水、吃點心、聊潛水", tag: "休息", coords: { lat: 23.2583, lng: 119.6500 } },
-        { time: "11:00", title: "第 4 潛｜二塭 🫧", icon: "🤿", desc: "二塭潛點，地形變化豐富，留意水流方向", tag: "潛水", coords: { lat: 23.2639, lng: 119.6472 } },
-        { time: "12:30", title: "午餐（船上簡餐）", icon: "🍱", desc: "補充能量，好好休息，下午還有一潛", tag: "美食", coords: { lat: 23.2500, lng: 119.6000 } },
-        { time: "14:30", title: "第 5 潛｜沈船 🫧", icon: "🤿", desc: "下午再訪沈船潛點，不同時段的光線帶來不一樣的水下氛圍", tag: "潛水", coords: { lat: 23.2200, lng: 119.5000 } },
-        { time: "16:00", title: "裝備整理 & 自由時間", icon: "🧹", desc: "清洗裝備、寫潛水日誌、甲板上看夕陽", tag: "休息", coords: { lat: 23.2069, lng: 119.4289 } },
-        { time: "17:30", title: "入港七美", icon: "🏝️", desc: "返回七美港停靠", tag: "交通", coords: { lat: 23.2069, lng: 119.4289 } },
-        { time: "18:30", title: "岸上晚餐（七美）", icon: "🦞", desc: "第二晚七美晚餐，試試不同餐廳", tag: "美食", coords: { lat: 23.2069, lng: 119.4289 } },
-        { time: "20:00", title: "自由活動", icon: "🌙", desc: "散步七美、觀星、船上歡唱 KTV 或打麻將", tag: "休息", coords: { lat: 23.2069, lng: 119.4289 } },
-      ],
-      food: [
-        { name: "船上早餐", desc: "簡單但足以補充體力的早餐", price: "含在費用", rating: "🚢 船上" },
-        { name: "船上午餐", desc: "船上簡餐，方便水面休息時補給", price: "含在費用", rating: "🚢 船上" },
-        { name: "七美岸上晚餐", desc: "再訪七美在地餐廳", price: "含在費用", rating: "🏝️ 七美" },
-      ],
-      tips: [
-        "🤿 今天 3 潛，注意控制免停留時間和氮醉風險",
-        "💧 水面休息要多喝水！船上脫水比陸地更快",
-        "📸 帶水下相機的話，清晨那潛光線最美",
-        "🌅 七美的星空非常乾淨，晚上記得抬頭看",
-        "🫧 如果計畫額外加潛（自費），跟潛導提前說",
-      ],
+      food:[{name:"船上早餐",desc:"簡單但足以補充體力的早餐",price:"含在費用",rating:"🚢 船上"},{name:"船上午餐",desc:"船上簡餐，方便水面休息時補給",price:"含在費用",rating:"🚢 船上"},{name:"七美岸上晚餐",desc:"再訪七美在地餐廳",price:"含在費用",rating:"🏝️ 七美"}],
+      tips:["🤿 今天 3 潛，注意控制免停留時間和氮醉風險","💧 水面休息要多喝水！船上脫水比陸地更快","📸 帶水下相機的話，清晨那潛光線最美","🌅 七美的星空非常乾淨，晚上記得抬頭看","🫧 如果計畫額外加潛（自費），跟潛導提前說"],
     },
-
-    // ────────── DAY 3 ──────────
-    {
-      date: "7/19（六）",
-      label: "DAY 3",
-      title: "最後兩潛・返航嘉義",
-      subtitle: "上午兩潛後返航，帶著滿滿回憶回家 🏠",
-      diveCount: 2,
-      mapCenter: { lat: 23.30, lng: 119.85, zoom: 9 },
-      stats: [
-        { label: "今日潛數", value: "2 潛", icon: "🤿" },
-        { label: "累計潛數", value: "7 / 7 ✅", icon: "📊" },
-        { label: "返航抵達", value: "~14:30", icon: "🏠" },
+    {date:"7/19（六）",label:"DAY 3",title:"最後兩潛・返航嘉義",subtitle:"上午兩潛後返航，帶著滿滿回憶回家 🏠",diveCount:2,
+      mapCenter:{lat:23.30,lng:119.85,zoom:9},
+      stats:[{label:"今日潛數",value:"2 潛",icon:"🤿"},{label:"累計潛數",value:"7 / 7 ✅",icon:"📊"},{label:"返航抵達",value:"~14:30",icon:"🏠"}],
+      schedule:[
+        {time:"06:30",title:"早餐（船上簡餐）",icon:"☀️",desc:"最後一天，把握每一刻海上時光",tag:"美食",coords:{lat:23.2069,lng:119.4289}},
+        {time:"07:30",title:"出港前往潛點",icon:"🚢",desc:"前往今日潛點",tag:"交通",coords:{lat:23.2400,lng:119.5500}},
+        {time:"08:00",title:"第 6 潛｜沈船 🫧",icon:"🤿",desc:"最後一天的沈船探索，把握清晨最佳能見度",tag:"潛水",coords:{lat:23.2583,lng:119.6694}},
+        {time:"09:30",title:"水面休息",icon:"☕",desc:"最後一次水面休息，補充水分",tag:"休息",coords:{lat:23.2583,lng:119.6500}},
+        {time:"10:30",title:"第 7 潛｜東吉之狼 🫧（最終潛！）",icon:"🤿",desc:"壓軸潛點！東吉之狼，把最震撼的畫面收進記憶裡 🫶",tag:"潛水",coords:{lat:23.2583,lng:119.6361}},
+        {time:"12:00",title:"午餐（船上簡餐）& 返航",icon:"🍱",desc:"收拾裝備、吃午餐、開始返航嘉義",tag:"交通",coords:{lat:23.30,lng:119.80}},
+        {time:"14:30",title:"抵達嘉義布袋港",icon:"🏠",desc:"回到陸地！拆裝卸貨，互道珍重",tag:"交通",coords:{lat:23.3748,lng:120.1625}},
+        {time:"15:00",title:"解散 & 歸途",icon:"🚗",desc:"各自返家，晚餐自理。記得最後一潛後 24 小時內不搭飛機！",tag:"交通",coords:{lat:23.3748,lng:120.1625}},
       ],
-      schedule: [
-        { time: "06:30", title: "早餐（船上簡餐）", icon: "☀️", desc: "最後一天，把握每一刻海上時光", tag: "美食", coords: { lat: 23.2069, lng: 119.4289 } },
-        { time: "07:30", title: "出港前往潛點", icon: "🚢", desc: "前往今日潛點", tag: "交通", coords: { lat: 23.2400, lng: 119.5500 } },
-        { time: "08:00", title: "第 6 潛｜沈船 🫧", icon: "🤿", desc: "最後一天的沈船探索，把握清晨最佳能見度", tag: "潛水", coords: { lat: 23.2583, lng: 119.6694 } },
-        { time: "09:30", title: "水面休息", icon: "☕", desc: "最後一次水面休息，補充水分", tag: "休息", coords: { lat: 23.2583, lng: 119.6500 } },
-        { time: "10:30", title: "第 7 潛｜東吉之狼 🫧（最終潛！）", icon: "🤿", desc: "壓軸潛點！東吉之狼，把最震撼的畫面收進記憶裡 🫶", tag: "潛水", coords: { lat: 23.2583, lng: 119.6361 } },
-        { time: "12:00", title: "午餐（船上簡餐）& 返航", icon: "🍱", desc: "收拾裝備、吃午餐、開始返航嘉義", tag: "交通", coords: { lat: 23.30, lng: 119.80 } },
-        { time: "14:30", title: "抵達嘉義布袋港", icon: "🏠", desc: "回到陸地！拆裝卸貨，互道珍重", tag: "交通", coords: { lat: 23.3748, lng: 120.1625 } },
-        { time: "15:00", title: "解散 & 歸途", icon: "🚗", desc: "各自返家，晚餐自理。記得最後一潛後 24 小時內不搭飛機！", tag: "交通", coords: { lat: 23.3748, lng: 120.1625 } },
-      ],
-      food: [
-        { name: "船上早餐 & 午餐", desc: "最後的船上餐食", price: "含在費用", rating: "🚢 船上" },
-        { name: "晚餐自理", desc: "回到陸地後自由覓食", price: "自費", rating: "🏠 嘉義" },
-      ],
-      tips: [
-        "✈️ 最後一潛後 18～24 小時內請勿搭飛機！",
-        "🚗 如果開車回程，注意潛水後的疲勞駕駛",
-        "📱 上岸後記得傳平安訊息給家人",
-        "🧹 裝備回家後要用淡水徹底清洗、陰乾",
-        "📝 趁記憶鮮明，把潛水日誌補齊",
-      ],
+      food:[{name:"船上早餐 & 午餐",desc:"最後的船上餐食",price:"含在費用",rating:"🚢 船上"},{name:"晚餐自理",desc:"回到陸地後自由覓食",price:"自費",rating:"🏠 嘉義"}],
+      tips:["✈️ 最後一潛後 18～24 小時內請勿搭飛機！","🚗 如果開車回程，注意潛水後的疲勞駕駛","📱 上岸後記得傳平安訊息給家人","🧹 裝備回家後要用淡水徹底清洗、陰乾","📝 趁記憶鮮明，把潛水日誌補齊"],
     },
   ],
-
-  // ── 行李清單 ──
-  packingList: [
-    { icon: "🪪", text: "潛水證照（AOWD/EANx）" },
-    { icon: "📒", text: "潛水日誌 Log Book" },
-    { icon: "🤿", text: "個人潛水裝備" },
-    { icon: "💻", text: "潛水電腦錶" },
-    { icon: "🔦", text: "水下手電筒" },
-    { icon: "📸", text: "水下相機 / GoPro" },
-    { icon: "💊", text: "暈船藥（上船前 30 分吃）" },
-    { icon: "🧴", text: "海洋友善防曬乳" },
-    { icon: "👕", text: "換洗衣物（3 天份）" },
-    { icon: "🩴", text: "拖鞋 / 防滑鞋" },
-    { icon: "🔋", text: "行動電源 / 充電線" },
-    { icon: "🎒", text: "防水袋" },
+  packingList:[
+    {icon:"🪪",text:"潛水證照"},
+    {icon:"🤿",text:"潛水裝備：重裝、輕裝、電腦錶、手電筒、相機"},
+    {icon:"🔋",text:"充電器"},
+    {icon:"👕",text:"個人換洗衣物"},
+    {icon:"💊",text:"個人所需藥品、暈船藥等"},
   ],
-
-  // ── 結語 ──
-  closing: {
-    title: "🤟 潛水安全，快樂回家",
-    message: "南方四島的海底薰衣草森林、壯觀珊瑚礁和豐富魚群，等你來探索。注意安全、尊重海洋、享受每一次下潛！",
-    signoff: "See you underwater! 🦈🫧🌊",
+  packingNote:[
+    "🧳 裝裝備的行李箱在上船組裝裝備後，將會保留在船邊的車上（船上空間有限）。",
+    "🎒 換洗衣物建議用後背包攜帶上船。",
+  ],
+  closing:{title:"🤟 潛水安全，快樂回家",message:"南方四島的海底薰衣草森林、壯觀珊瑚礁和豐富魚群，等你來探索。注意安全、尊重海洋、享受每一次下潛！",signoff:"See you underwater! 🦈🫧🌊"},
+  diveNote:"⚠️ 以上潛點為預定規劃，實際潛點將依當日風浪狀況及夥伴能力做調整，以潛導現場判斷為準。",
+  diveSafety:{title:"潛水注意事項",intro:"此活動必須領有國際潛水證照進階以上之合格潛水證照。",
+    sections:[
+      {title:"🧰 裝備與行前準備",items:["浮力袋 + 線軸與電腦錶為必備物品。黃昏潛及夜潛請準備手電筒。","活動前請維持良好身體狀況，規律作息。仔細維護潛水裝備處於良好狀態。","會暈船者，請自行準備暈船藥，開航半小時前服用；船隻開航前立即整理潛水裝備。"]},
+      {title:"🤝 團隊與潛伴制度",items:["進行潛水活動時，採潛伴制進行，2～3 人一組相互照應。","資深潛水員各項行動作為，請謹慎行事以作為資淺者的「模範」。","潛水前裝備互相檢查，潛水時互相保持可以目光接觸的距離，互相提醒潛水時間、深度、空氣存量，共同處理緊急狀況。","搬運重物時，請發揮團隊精神互助合作。"]},
+      {title:"⬇️ 入水與下潛",items:["到達潛點後，先下水的人 BCD 充氣保持正浮力，讓出入水區，拉著水流繩或於水面上等待後續下水者。注意導潛的下潛指示。若船「下錨」則沿著錨繩下潛上升。","下潛時動作要快，潛伴保持目光接觸，注意錨繩等參考點，並跟緊隊伍，否則隊伍會因水流影響而分散。","下潛接近海底時，做好中性浮力，避免碰觸海底生物。","『放流潛水』時，人員需迅速集結，切勿脫隊或任意逗留。"]},
+      {title:"🌊 水下安全守則",items:["潛水時隨時調整 BCD 內氣量維持中性浮力，隨時注意潛伴、導潛、隊伍位置動向。","未經許可，不得超越領隊、落後押隊導潛，不得擅自脫隊。遇到任何狀況，依導潛之指示應變。","隨時注意殘壓，耗氣量較大者，採用較淺的潛水深度跟隨隊伍前進。","氮殘控制：跟著您的電腦錶，不能比導潛深、不能比導潛久，不在水中上上下下。本次活動屬連續多次多日之潛水活動，請確實遵從電腦錶的指示進行免減壓潛水。","本活動為多日連續潛水，為考量個人安全及團體行動，每日潛水以不超過 4 支為限。","潛水活動不必全程參加，請依個人之體能、精神狀況酌情參加；不想下水就不要下水，想休息就應該休息！如潛水未達到行程安排次數者不另外退費。","活動中若潛水員未能達成一般標準之技巧要求（耳壓平衡、浮力控制、供氣資源管理、潛伴配合等），潛導得強制不得參加部分潛水活動。"]},
+      {title:"⬆️ 上升與出水",items:["上升時不要一下子就冒出水面，上升速度每分鐘不超過 9M。","潛水最大深度超過 20M 時，請在二分之一深度進行 1～2 分鐘的「半深度停留」。","出水面之前在 4～6M 處，進行 3～5 分鐘的「安全停留」。隨時注意頭頂上方、深度計、導潛及潛伴的位置。","上升時注視潛伴及船隻的位置、動向，螺旋緩慢上升，不要只顧著看電腦錶。","浮出水面後，BCD 立即充氣保持正浮力，比 OK 手勢，儘速游向船舷（避免船首、船尾），拉住水流繩、扶梯依序上船。","上船後，儘速讓開登船地點再卸裝。先上船卸裝者，協助目視接觸其餘潛水員，有餘力者儘量幫助後續上船。"]},
+      {title:"🚨 緊急程序",items:["失散程序：原地停留 1 分鐘；若仍無法歸隊，視狀況選擇最佳程序出水面且依循電腦錶指示進行減壓與安全停留，並將浮力袋充氣以利船隻辨識。出水面請立即建立水面程序。"]},
+      {title:"🐢 海洋保育",items:["潛水員禁帶漁獵器材及攜帶任何生物上岸，違者不得再參加後續之潛水活動。","本海域任何海洋生物禁止採捕或觸摸，並請與其保持一定的安全距離。","海洋生物資源是構成海洋生態系中極為重要的一環，期使這些美麗的珊瑚礁及海底資源能永續長存，需要大家共同來維護及保護它。","水肺潛水 12 小時內，不可進行超過 3M 的閉氣下潛活動，以免提高減壓病之發生率。"]},
+    ],
   },
-
-  // ── 潛點備註 ──
-  diveNote: "⚠️ 以上潛點為預定規劃，實際潛點將依當日風浪狀況及夥伴能力做調整，以潛導現場判斷為準。",
 };
 
 // ═══════════════════════════════════════════════════════════════════
-// 🎨 以下為模板渲染邏輯 — 通常不需要修改
+// 🎨 以下為渲染邏輯 — 通常不需要修改
 // ═══════════════════════════════════════════════════════════════════
+const WX={0:{i:"☀️",l:"晴天"},1:{i:"🌤️",l:"大致晴"},2:{i:"⛅",l:"多雲"},3:{i:"☁️",l:"陰天"},45:{i:"🌫️",l:"霧"},51:{i:"🌦️",l:"小雨"},53:{i:"🌦️",l:"中雨"},55:{i:"🌧️",l:"大雨"},61:{i:"🌧️",l:"小雨"},63:{i:"🌧️",l:"中雨"},65:{i:"🌧️",l:"大雨"},80:{i:"🌦️",l:"陣雨"},81:{i:"🌧️",l:"陣雨"},82:{i:"⛈️",l:"暴雨"},95:{i:"⛈️",l:"雷暴"}};
+const TC={交通:{b:"#e3f2fd",t:"#1565c0"},美食:{b:"#fff3e0",t:"#e65100"},景點:{b:"#e8f5e9",t:"#2e7d32"},潛水:{b:"#e0f7fa",t:"#00695c"},住宿:{b:"#f3e5f5",t:"#7b1fa2"},休息:{b:"#fce4ec",t:"#ad1457"}};
+function wx(c){return WX[c]||{i:"🌡️",l:"—"}}
+function e(tag,cls,html){const el=document.createElement(tag);if(cls)el.className=cls;if(html)el.innerHTML=html;return el}
 
-const { useState, useEffect } = React;
+let activeDay=0;
+const $=id=>document.getElementById(id);
 
-const WEATHER_ICONS = {0:{icon:"☀️",label:"晴天"},1:{icon:"🌤️",label:"大致晴"},2:{icon:"⛅",label:"多雲"},3:{icon:"☁️",label:"陰天"},45:{icon:"🌫️",label:"霧"},48:{icon:"🌫️",label:"霧"},51:{icon:"🌦️",label:"小雨"},53:{icon:"🌦️",label:"中雨"},55:{icon:"🌧️",label:"大雨"},61:{icon:"🌧️",label:"小雨"},63:{icon:"🌧️",label:"中雨"},65:{icon:"🌧️",label:"大雨"},80:{icon:"🌦️",label:"陣雨"},81:{icon:"🌧️",label:"陣雨"},82:{icon:"⛈️",label:"暴雨"},95:{icon:"⛈️",label:"雷暴"}};
-const TAG_COLORS = {交通:{bg:"#e3f2fd",text:"#1565c0"},美食:{bg:"#fff3e0",text:"#e65100"},景點:{bg:"#e8f5e9",text:"#2e7d32"},潛水:{bg:"#e0f7fa",text:"#00695c"},住宿:{bg:"#f3e5f5",text:"#7b1fa2"},休息:{bg:"#fce4ec",text:"#ad1457"},購物:{bg:"#fce4ec",text:"#c62828"},活動:{bg:"#e0f7fa",text:"#00838f"}};
-function getWeatherInfo(c){return WEATHER_ICONS[c]||{icon:"🌡️",label:"—"};}
+function render(){
+  const app=$("app");app.innerHTML="";const T=TRIP;
 
-function useWeather(lat,lng){
-  const[w,setW]=useState(null);const[l,setL]=useState(true);
-  useEffect(()=>{let c=false;(async()=>{try{const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m,apparent_temperature&daily=temperature_2m_max,temperature_2m_min,weather_code,uv_index_max,precipitation_probability_max&timezone=Asia/Taipei&forecast_days=16`);if(!r.ok)throw 0;const d=await r.json();if(!c){setW(d);setL(false);}}catch{if(!c)setL(false);}})();return()=>{c=true;};},[lat,lng]);
-  return{weather:w,loading:l};
+  // Hero
+  app.innerHTML+=`<div class="hero"><div class="deco1"></div><div class="deco2"></div>
+    <div class="hero-emoji">${T.hero.emoji}</div>
+    <div class="hero-badge">🌊 ${T.title}</div>
+    <div class="hero-date">📅 ${T.dateRange}</div>
+    <h1>${T.subtitle}</h1>
+    <p class="hero-tagline">${T.tagline}</p>
+    <div class="hero-info">${T.info.map(i=>`<span>${i.icon} ${i.text}</span>`).join("")}</div>
+    ${T.hero.greeting?`<div class="hero-greeting">${T.hero.greeting}</div>`:""}
+  </div>`;
+
+  // Weather
+  app.innerHTML+=`<div class="sec" id="wx-sec"><h3>🌤️ ${T.location.name} 即時天氣</h3><div class="card" style="text-align:center"><span style="color:#5a6a7a;font-size:13px">⏳ 載入天氣中...</span></div></div>`;
+  fetch(`https://api.open-meteo.com/v1/forecast?latitude=${T.location.lat}&longitude=${T.location.lng}&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m,apparent_temperature&daily=temperature_2m_max,temperature_2m_min,weather_code,precipitation_probability_max&timezone=Asia/Taipei&forecast_days=7`)
+    .then(r=>r.json()).then(d=>{
+      const sec=$("wx-sec");if(!sec)return;
+      const c=d.current,dy=d.daily,wi=wx(c.weather_code);
+      let h=`<h3>🌤️ ${T.location.name} 即時天氣</h3>`;
+      h+=`<div class="wx-now"><div class="icon">${wi.i}</div><div style="flex:1"><div style="font-size:11px;opacity:.75">NOW・${T.location.name}</div><div class="temp">${Math.round(c.temperature_2m)}°C</div><div style="font-size:11px;opacity:.8;margin-top:3px">體感 ${Math.round(c.apparent_temperature)}°C｜💨 ${Math.round(c.wind_speed_10m)} km/h｜💧 ${c.relative_humidity_2m}%</div></div></div>`;
+      if(dy){h+=`<div class="wx-row" style="margin-top:10px">`;
+        dy.time.forEach((dt,i)=>{const w=wx(dy.weather_code[i]);
+          h+=`<div class="wx-day${i===0?" today":""}"><div style="font-size:11px;color:#5a6a7a;margin-bottom:3px;font-weight:${i===0?700:400}">${i===0?"今天":dt.slice(5)}</div><div style="font-size:22px;margin-bottom:2px">${w.i}</div><div style="font-size:10px;color:#5a6a7a;margin-bottom:2px">${w.l}</div><div style="font-size:12px;font-weight:700"><span style="color:#e67e22">${Math.round(dy.temperature_2m_max[i])}°</span>/<span style="color:#0c2461">${Math.round(dy.temperature_2m_min[i])}°</span></div>${dy.precipitation_probability_max?`<div style="font-size:10px;color:${dy.precipitation_probability_max[i]>=50?"#e53e3e":"#5a6a7a"};margin-top:2px">🌧 ${dy.precipitation_probability_max[i]}%</div>`:""}</div>`;
+        });h+=`</div>`;}
+      h+=`<div style="font-size:10px;color:#5a6a7a;text-align:right;margin-top:6px">資料來源：Open-Meteo・即時更新</div>`;
+      sec.innerHTML=h;
+    }).catch(()=>{const sec=$("wx-sec");if(sec)sec.innerHTML="";});
+
+  // Fees
+  app.innerHTML+=`<div class="sec"><h3>💰 費用明細</h3><div class="fee-row"><div class="fee-inc"><div style="font-size:13px;font-weight:700;color:#2e7d32;margin-bottom:8px">✅ 費用包含</div>${T.fees.included.map(i=>`<div style="font-size:13px;color:#1a1a2e;line-height:1.7;padding-left:4px">• ${i}</div>`).join("")}</div><div class="fee-exc"><div style="font-size:13px;font-weight:700;color:#c62828;margin-bottom:8px">❎ 費用不含</div>${T.fees.excluded.map(i=>`<div style="font-size:13px;color:#1a1a2e;line-height:1.7;padding-left:4px">• ${i}</div>`).join("")}</div></div></div>`;
+
+  // Qualification
+  const q=T.qualification;
+  app.innerHTML+=`<div class="sec"><h3>‼️ ${q.title}</h3><div class="card" style="background:#fef4e8;border-color:rgba(230,126,34,.2)"><div class="qual-grid">${q.items.map(i=>`<div style="font-size:13px;color:#1a1a2e;line-height:1.5">${i.icon} ${i.text}</div>`).join("")}</div>${q.note?`<div style="font-size:12px;color:#5a6a7a;margin-top:10px;padding-top:10px;border-top:1px solid rgba(230,126,34,.15);font-style:italic">📋 ${q.note}</div>`:""}</div></div>`;
+
+  // Tabs
+  let tabsH=`<div class="tabs" id="tabs">`;
+  T.days.forEach((d,i)=>{tabsH+=`<button class="tab${i===activeDay?" active":""}" data-day="${i}"><div class="tab-label">${d.label}</div><div class="tab-date">${d.date.split("（")[0]}</div>${d.diveCount?`<div class="tab-dive">🤿 ×${d.diveCount}</div>`:""}</button>`;});
+  tabsH+=`</div><div class="divider"></div>`;
+  app.innerHTML+=tabsH;
+
+  // Day content
+  const day=T.days[activeDay];
+  let dc=`<div id="day-content">`;
+
+  // Header
+  dc+=`<div class="sec"><div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span class="day-badge">${day.label}</span><span style="font-size:13px;color:#5a6a7a">${day.date}</span></div><div class="day-title">${day.title}</div><p class="day-sub">${day.subtitle}</p>`;
+  if(day.stats){dc+=`<div class="stats">${day.stats.map(s=>`<div class="stat"><div class="stat-icon">${s.icon}</div><div class="stat-val">${s.value}</div><div class="stat-lbl">${s.label}</div></div>`).join("")}</div>`;}
+  dc+=`</div>`;
+
+  // Map
+  const locs=day.schedule.filter(s=>s.coords);const u=[];const seen=new Set();
+  locs.forEach(l=>{const k=l.coords.lat+","+l.coords.lng;if(!seen.has(k)){seen.add(k);u.push(l);}});
+  const mc=day.mapCenter||{lat:23.25,lng:119.6,zoom:10};
+  const mapsUrl=`https://www.google.com/maps/dir/${u.map(l=>l.coords.lat+","+l.coords.lng).join("/")}/`;
+  dc+=`<div class="sec"><h3>🗺️ 今日路線導覽</h3><div class="map-wrap"><div class="map-iframe"><iframe src="https://maps.google.com/maps?q=${mc.lat},${mc.lng}&z=${mc.zoom}&output=embed" width="100%" height="200" style="border:0;display:block" allowfullscreen loading="lazy"></iframe></div><div class="card map-route"><div style="font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:10px">📍 路線順序</div>`;
+  u.forEach((loc,i)=>{dc+=`<div style="display:flex;align-items:center;gap:10px"><div style="display:flex;flex-direction:column;align-items:center;width:28px;flex-shrink:0"><div class="route-num">${i+1}</div>${i<u.length-1?`<div class="route-line"></div>`:""}</div><div style="flex:1;padding-bottom:${i<u.length-1?2:0}px"><span style="font-size:14px">${loc.icon} </span><span style="font-size:13px;color:#1a1a2e">${loc.title}</span></div></div>`;});
+  dc+=`<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="map-btn">🗺️ 在 Google Maps 開啟完整路線</a></div></div></div>`;
+
+  // Timeline
+  dc+=`<div class="sec"><h3>📋 當日行程 <span style="font-size:12px;font-weight:400;color:#5a6a7a">（時間供參考，實際依當天情況安排）</span></h3><div style="position:relative"><div class="tl-line"></div>`;
+  day.schedule.forEach((item,i)=>{
+    const tc=TC[item.tag]||{b:"#f5f5f5",t:"#666"};const isDive=item.tag==="潛水";
+    dc+=`<div class="tl-item"><div class="tl-time">${item.time}</div><div class="tl-dot${isDive?" dive":""}"></div><div class="tl-card${isDive?" dive":""}"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap"><span class="tl-icon">${item.icon}</span><span class="tl-title">${item.title}</span>${item.tag?`<span class="tag" style="background:${tc.b};color:${tc.t}">${item.tag}</span>`:""}</div><p class="tl-desc">${item.desc}</p></div></div>`;
+  });
+  dc+=`</div></div>`;
+
+  // Food
+  if(day.food&&day.food.length){
+    dc+=`<div class="sec"><h3>🍽️ 今日餐食</h3><div style="display:flex;flex-direction:column;gap:10px">`;
+    day.food.forEach(f=>{dc+=`<div class="card food-card"><div style="flex:1"><div class="food-name">${f.name}</div><div class="food-desc">${f.desc}</div></div><div style="text-align:right;flex-shrink:0"><div class="food-price">${f.price}</div><div class="food-rating">${f.rating}</div></div></div>`;});
+    dc+=`</div></div>`;
+  }
+
+  // Tips
+  if(day.tips&&day.tips.length){
+    dc+=`<div class="sec"><h3>💡 行程小 TIPS</h3><div class="tips-box">${day.tips.map(t=>`<div class="tip-item">${t}</div>`).join("")}</div></div>`;
+  }
+
+  // Packing (day 1 only)
+  if(activeDay===0){
+    dc+=`<div class="sec"><h3>🧳 裝備 & 行李清單</h3><div class="pack-grid">${T.packingList.map(p=>`<div class="pack-item">${p.icon} ${p.text}</div>`).join("")}</div>`;
+    if(T.packingNote&&T.packingNote.length){
+      dc+=`<div class="tips-box" style="margin-top:10px;background:#fef4e8;border-color:rgba(230,126,34,.2)"><div style="font-size:13px;font-weight:700;color:#e67e22;margin-bottom:6px">📌 船上空間有限，小提醒</div>${T.packingNote.map(n=>`<div class="tip-item" style="color:#1a1a2e">${n}</div>`).join("")}</div>`;
+    }
+    dc+=`</div>`;
+  }
+
+  // Dive note
+  dc+=`<div class="sec"><div class="dive-note"><span style="font-size:18px;flex-shrink:0;line-height:1.3">🌊</span><p>${T.diveNote}</p></div></div>`;
+
+  // Dive safety
+  dc+=`<div class="sec" id="safety-sec"><button class="safety-toggle" id="safety-btn"><div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">⚠️</span><div style="text-align:left"><div style="font-size:16px;font-weight:700;color:#1a1a2e">${T.diveSafety.title}</div><div style="font-size:12px;color:#5a6a7a;margin-top:2px" id="safety-hint">點擊展開完整注意事項</div></div></div><span class="safety-arrow" id="safety-arrow">▼</span></button><div class="safety-body hidden" id="safety-body"><div class="safety-intro">📋 ${T.diveSafety.intro}</div>`;
+  T.diveSafety.sections.forEach((sec,idx)=>{
+    dc+=`<div class="safety-sec"><button class="safety-sec-toggle" data-sec="${idx}"><span>${sec.title}</span><span class="safety-sec-arrow" id="sec-arrow-${idx}">▼</span></button><div class="safety-items" id="sec-items-${idx}">${sec.items.map(it=>`<div class="safety-item">${it}</div>`).join("")}</div></div>`;
+  });
+  dc+=`</div></div>`;
+
+  // Closing
+  if(activeDay===0||activeDay===T.days.length-1){
+    dc+=`<div class="sec"><div class="closing"><h3>${T.closing.title}</h3><p>${T.closing.message}</p><div class="signoff">${T.closing.signoff}</div></div></div>`;
+  }
+
+  dc+=`</div><div class="footer">✨ Made with Cho-Agent · Travel Itinerary Template</div>`;
+  app.innerHTML+=dc;
+
+  // Event: tabs
+  document.querySelectorAll(".tab").forEach(btn=>{
+    btn.addEventListener("click",()=>{activeDay=parseInt(btn.dataset.day);render();});
+  });
+
+  // Event: safety toggle
+  const safetyBtn=$("safety-btn"),safetyBody=$("safety-body"),safetyArrow=$("safety-arrow"),safetyHint=$("safety-hint");
+  if(safetyBtn){safetyBtn.addEventListener("click",()=>{
+    const open=safetyBody.classList.toggle("hidden");
+    safetyArrow.style.transform=open?"rotate(0deg)":"rotate(180deg)";
+    safetyHint.textContent=open?"點擊展開完整注意事項":"點擊收合";
+  });}
+
+  // Event: safety sub-sections
+  document.querySelectorAll(".safety-sec-toggle").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const idx=btn.dataset.sec,items=$("sec-items-"+idx),arrow=$("sec-arrow-"+idx);
+      const isHidden=items.classList.toggle("hidden");
+      arrow.style.transform=isHidden?"rotate(-90deg)":"rotate(0deg)";
+    });
+  });
 }
 
-function Hero({trip}){const t=trip.theme;return(
-  <div style={{background:t.heroGradient,padding:"48px 24px 36px",textAlign:"center",position:"relative",overflow:"hidden",borderRadius:"0 0 32px 32px"}}>
-    <div style={{position:"absolute",top:-60,right:-60,width:200,height:200,borderRadius:"50%",background:"rgba(255,255,255,0.06)"}}/>
-    <div style={{position:"absolute",bottom:-30,left:-40,width:140,height:140,borderRadius:"50%",background:"rgba(255,255,255,0.04)"}}/>
-    <div style={{position:"absolute",top:40,left:20,fontSize:24,opacity:0.15}}>🫧</div>
-    <div style={{position:"absolute",top:80,right:30,fontSize:20,opacity:0.12}}>🐠</div>
-    <div style={{position:"absolute",bottom:50,left:50,fontSize:22,opacity:0.1}}>🐢</div>
-    <div style={{fontSize:48,marginBottom:8}}>{trip.hero.emoji}</div>
-    <div style={{display:"inline-block",background:"rgba(255,255,255,0.15)",backdropFilter:"blur(8px)",borderRadius:20,padding:"4px 16px",fontSize:13,color:"#fff",letterSpacing:1,marginBottom:10}}>🌊 {trip.title}</div>
-    <div style={{fontSize:12,color:"rgba(255,255,255,0.8)",marginBottom:6,letterSpacing:2}}>📅 {trip.dateRange}</div>
-    <h1 style={{fontSize:24,fontWeight:800,color:"#fff",margin:"10px 0 6px",lineHeight:1.3}}>{trip.subtitle}</h1>
-    <p style={{fontSize:14,color:"rgba(255,255,255,0.88)",margin:"0 0 20px",lineHeight:1.6}}>{trip.tagline}</p>
-    <div style={{display:"flex",flexWrap:"wrap",gap:8,justifyContent:"center"}}>
-      {trip.info.map((item,i)=>(<div key={i} style={{background:"rgba(255,255,255,0.15)",backdropFilter:"blur(8px)",borderRadius:12,padding:"8px 14px",fontSize:13,color:"#fff",fontWeight:500}}>{item.icon} {item.text}</div>))}
-    </div>
-    {trip.hero.greeting&&<div style={{marginTop:18,fontSize:14,color:"rgba(255,255,255,0.9)",fontWeight:600}}>{trip.hero.greeting}</div>}
-  </div>
-);}
-
-function WeatherWidget({trip,theme}){const{weather,loading}=useWeather(trip.location.lat,trip.location.lng);if(!weather&&!loading)return null;return(
-  <div style={{padding:"12px 20px 4px"}}>
-    <h3 style={{fontSize:16,fontWeight:700,color:theme.text,margin:"0 0 10px"}}>🌤️ {trip.location.name} 即時天氣</h3>
-    {loading?(<div style={{background:theme.card,borderRadius:14,padding:"18px",textAlign:"center",boxShadow:"0 2px 8px rgba(0,0,0,0.05)"}}><div style={{fontSize:13,color:theme.textLight}}>⏳ 載入中...</div></div>
-    ):weather?(<div style={{display:"flex",flexDirection:"column",gap:10}}>
-      {weather.current&&(<div style={{background:theme.heroGradient,borderRadius:14,padding:"16px 18px",color:"#fff",display:"flex",alignItems:"center",gap:16}}>
-        <div style={{fontSize:42}}>{getWeatherInfo(weather.current.weather_code).icon}</div>
-        <div style={{flex:1}}>
-          <div style={{fontSize:11,opacity:0.75,marginBottom:2}}>NOW・{trip.location.name}</div>
-          <div style={{fontSize:32,fontWeight:800,lineHeight:1.1}}>{Math.round(weather.current.temperature_2m)}°C</div>
-          <div style={{fontSize:11,opacity:0.8,marginTop:3}}>體感 {Math.round(weather.current.apparent_temperature)}°C｜💨 {Math.round(weather.current.wind_speed_10m)} km/h｜💧 {weather.current.relative_humidity_2m}%</div>
-        </div>
-      </div>)}
-      {weather.daily&&(<div style={{display:"flex",gap:6,overflowX:"auto",WebkitOverflowScrolling:"touch",paddingBottom:4}}>
-        {weather.daily.time.slice(0,7).map((date,i)=>{const wi=getWeatherInfo(weather.daily.weather_code[i]);const isToday=i===0;return(
-          <div key={i} style={{flex:"0 0 auto",minWidth:70,background:isToday?theme.primaryLight:theme.card,borderRadius:12,padding:"10px 8px",textAlign:"center",boxShadow:"0 1px 4px rgba(0,0,0,0.04)",border:isToday?`2px solid ${theme.primary}`:"1px solid rgba(0,0,0,0.04)"}}>
-            <div style={{fontSize:11,color:theme.textLight,marginBottom:3,fontWeight:isToday?700:400}}>{isToday?"今天":date.slice(5)}</div>
-            <div style={{fontSize:22,marginBottom:2}}>{wi.icon}</div>
-            <div style={{fontSize:10,color:theme.textLight,marginBottom:2}}>{wi.label}</div>
-            <div style={{fontSize:12,fontWeight:700,color:theme.text}}><span style={{color:theme.accent}}>{Math.round(weather.daily.temperature_2m_max[i])}°</span><span style={{color:theme.textLight}}>/</span><span style={{color:theme.primary}}>{Math.round(weather.daily.temperature_2m_min[i])}°</span></div>
-            {weather.daily.precipitation_probability_max&&(<div style={{fontSize:10,color:weather.daily.precipitation_probability_max[i]>=50?"#e53e3e":theme.textLight,marginTop:2}}>🌧 {weather.daily.precipitation_probability_max[i]}%</div>)}
-          </div>);})}
-      </div>)}
-      <div style={{fontSize:10,color:theme.textLight,textAlign:"right"}}>資料來源：Open-Meteo・即時更新</div>
-    </div>):null}
-  </div>
-);}
-
-function FeeSection({fees,theme}){if(!fees)return null;return(
-  <div style={{padding:"8px 20px 8px"}}>
-    <h3 style={{fontSize:16,fontWeight:700,color:theme.text,margin:"0 0 10px"}}>💰 費用明細</h3>
-    <div style={{display:"flex",gap:10,flexDirection:"column"}}>
-      <div style={{background:"#e8f5e9",borderRadius:14,padding:"14px 16px",border:"1px solid #c8e6c9"}}>
-        <div style={{fontSize:13,fontWeight:700,color:"#2e7d32",marginBottom:8}}>✅ 費用包含</div>
-        {fees.included.map((item,i)=>(<div key={i} style={{fontSize:13,color:theme.text,lineHeight:1.7,paddingLeft:4}}>• {item}</div>))}
-      </div>
-      <div style={{background:"#fce4ec",borderRadius:14,padding:"14px 16px",border:"1px solid #f8bbd0"}}>
-        <div style={{fontSize:13,fontWeight:700,color:"#c62828",marginBottom:8}}>❎ 費用不含</div>
-        {fees.excluded.map((item,i)=>(<div key={i} style={{fontSize:13,color:theme.text,lineHeight:1.7,paddingLeft:4}}>• {item}</div>))}
-      </div>
-    </div>
-  </div>
-);}
-
-function QualificationSection({qualification,theme}){if(!qualification)return null;return(
-  <div style={{padding:"8px 20px 12px"}}>
-    <h3 style={{fontSize:16,fontWeight:700,color:theme.text,margin:"0 0 10px"}}>‼️ {qualification.title}</h3>
-    <div style={{background:theme.accentLight,borderRadius:14,padding:"14px 16px",border:`1px solid ${theme.accent}30`}}>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
-        {qualification.items.map((item,i)=>(<div key={i} style={{fontSize:13,color:theme.text,lineHeight:1.5}}>{item.icon} {item.text}</div>))}
-      </div>
-      {qualification.note&&(<div style={{fontSize:12,color:theme.textLight,marginTop:10,paddingTop:10,borderTop:`1px solid ${theme.accent}20`,fontStyle:"italic"}}>📋 {qualification.note}</div>)}
-    </div>
-  </div>
-);}
-
-function DayTabs({days,activeDay,onChange,theme}){return(
-  <div style={{display:"flex",gap:0,padding:"16px 16px 0",overflowX:"auto"}}>
-    {days.map((day,i)=>{const a=i===activeDay;return(
-      <button key={i} onClick={()=>onChange(i)} style={{flex:"1 0 auto",minWidth:80,padding:"12px 8px 10px",border:"none",borderBottom:a?`3px solid ${theme.accent}`:"3px solid transparent",background:a?theme.accentLight:"transparent",borderRadius:"12px 12px 0 0",cursor:"pointer",transition:"all 0.25s",textAlign:"center"}}>
-        <div style={{fontSize:11,fontWeight:700,color:a?theme.accent:theme.textLight,letterSpacing:1}}>{day.label}</div>
-        <div style={{fontSize:12,color:a?theme.text:theme.textLight,marginTop:2}}>{day.date.split("（")[0]}</div>
-        {day.diveCount&&<div style={{fontSize:10,color:a?theme.primary:theme.textLight,marginTop:2}}>🤿 ×{day.diveCount}</div>}
-      </button>);})}
-  </div>
-);}
-
-function DayHeader({day,theme}){return(
-  <div style={{padding:"24px 20px 12px"}}>
-    <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:6}}>
-      <span style={{background:theme.accent,color:"#fff",fontSize:11,fontWeight:700,padding:"3px 10px",borderRadius:8}}>{day.label}</span>
-      <span style={{fontSize:13,color:theme.textLight}}>{day.date}</span>
-    </div>
-    <h2 style={{fontSize:22,fontWeight:800,color:theme.text,margin:"8px 0 4px"}}>{day.title}</h2>
-    <p style={{fontSize:14,color:theme.textLight,margin:0,lineHeight:1.5}}>{day.subtitle}</p>
-    {day.stats&&(<div style={{display:"flex",gap:8,marginTop:16}}>
-      {day.stats.map((s,i)=>(<div key={i} style={{flex:1,background:theme.primaryLight,borderRadius:12,padding:"10px 12px",textAlign:"center"}}>
-        <div style={{fontSize:16,marginBottom:2}}>{s.icon}</div>
-        <div style={{fontSize:15,fontWeight:700,color:theme.primary}}>{s.value}</div>
-        <div style={{fontSize:11,color:theme.textLight,marginTop:2}}>{s.label}</div>
-      </div>))}
-    </div>)}
-  </div>
-);}
-
-function MapSection({day,theme}){
-  const locs=day.schedule.filter(s=>s.coords);if(locs.length===0)return null;
-  const u=[];const seen=new Set();locs.forEach(l=>{const k=`${l.coords.lat},${l.coords.lng}`;if(!seen.has(k)){seen.add(k);u.push(l);}});
-  const c=day.mapCenter||{lat:u.reduce((s,l)=>s+l.coords.lat,0)/u.length,lng:u.reduce((s,l)=>s+l.coords.lng,0)/u.length,zoom:10};
-  const mapsUrl=`https://www.google.com/maps/dir/${u.map(l=>`${l.coords.lat},${l.coords.lng}`).join("/")}/`;
-  const embedUrl=`https://maps.google.com/maps?q=${c.lat},${c.lng}&z=${c.zoom}&output=embed`;
-  return(
-    <div style={{padding:"8px 20px 16px"}}>
-      <h3 style={{fontSize:16,fontWeight:700,color:theme.text,margin:"0 0 12px"}}>🗺️ 今日路線導覽</h3>
-      <div style={{borderRadius:14,overflow:"hidden",boxShadow:"0 2px 12px rgba(0,0,0,0.08)",marginBottom:12,border:"1px solid rgba(0,0,0,0.06)"}}>
-        <iframe src={embedUrl} width="100%" height="200" style={{border:0,display:"block"}} allowFullScreen loading="lazy" title={`${day.label} map`}/>
-      </div>
-      <div style={{background:theme.card,borderRadius:14,padding:"14px 16px",boxShadow:"0 2px 8px rgba(0,0,0,0.05)",border:"1px solid rgba(0,0,0,0.04)"}}>
-        <div style={{fontSize:13,fontWeight:600,color:theme.text,marginBottom:10}}>📍 路線順序</div>
-        {u.map((loc,i)=>(<div key={i} style={{display:"flex",alignItems:"center",gap:10}}>
-          <div style={{display:"flex",flexDirection:"column",alignItems:"center",width:28,flexShrink:0}}>
-            <div style={{width:24,height:24,borderRadius:"50%",background:theme.primary,color:"#fff",fontSize:12,fontWeight:700,display:"flex",alignItems:"center",justifyContent:"center"}}>{i+1}</div>
-            {i<u.length-1&&<div style={{width:2,height:16,background:`${theme.primary}30`}}/>}
-          </div>
-          <div style={{flex:1,paddingBottom:i<u.length-1?2:0}}><span style={{fontSize:14}}>{loc.icon} </span><span style={{fontSize:13,color:theme.text}}>{loc.title}</span></div>
-        </div>))}
-        <a href={mapsUrl} target="_blank" rel="noopener noreferrer" style={{display:"flex",alignItems:"center",justifyContent:"center",gap:8,marginTop:14,padding:"10px 16px",background:theme.primary,color:"#fff",borderRadius:10,textDecoration:"none",fontSize:13,fontWeight:600}}>🗺️ 在 Google Maps 開啟完整路線</a>
-      </div>
-    </div>
-  );
-}
-
-function Timeline({schedule,theme}){return(
-  <div style={{padding:"8px 20px 16px"}}>
-    <h3 style={{fontSize:16,fontWeight:700,color:theme.text,margin:"0 0 16px"}}>📋 當日行程</h3>
-    <div style={{position:"relative"}}>
-      <div style={{position:"absolute",left:44,top:8,bottom:8,width:2,background:`linear-gradient(to bottom, ${theme.primary}22, ${theme.primary}44, ${theme.primary}22)`,borderRadius:1}}/>
-      {schedule.map((item,i)=>{const ts=TAG_COLORS[item.tag]||{bg:"#f5f5f5",text:"#666"};const isDive=item.tag==="潛水";return(
-        <div key={i} style={{display:"flex",gap:14,marginBottom:i<schedule.length-1?4:0,position:"relative",alignItems:"flex-start"}}>
-          <div style={{width:36,fontSize:12,fontWeight:700,color:theme.primary,paddingTop:14,textAlign:"right",fontVariantNumeric:"tabular-nums",flexShrink:0}}>{item.time}</div>
-          <div style={{width:14,height:14,borderRadius:"50%",background:isDive?theme.primary:theme.card,border:`3px solid ${theme.primary}`,flexShrink:0,marginTop:14,position:"relative",zIndex:1}}/>
-          <div style={{flex:1,background:isDive?theme.primaryLight:theme.card,borderRadius:14,padding:"12px 14px",boxShadow:"0 2px 8px rgba(0,0,0,0.06)",border:isDive?`2px solid ${theme.primary}30`:"1px solid rgba(0,0,0,0.04)"}}>
-            <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4,flexWrap:"wrap"}}>
-              <span style={{fontSize:18}}>{item.icon}</span>
-              <span style={{fontSize:14,fontWeight:700,color:theme.text}}>{item.title}</span>
-              {item.tag&&<span style={{fontSize:10,fontWeight:600,padding:"2px 8px",borderRadius:6,background:ts.bg,color:ts.text}}>{item.tag}</span>}
-            </div>
-            <p style={{fontSize:13,color:theme.textLight,margin:0,lineHeight:1.5}}>{item.desc}</p>
-          </div>
-        </div>);})}
-    </div>
-  </div>
-);}
-
-function FoodSection({food,theme}){if(!food||!food.length)return null;return(
-  <div style={{padding:"8px 20px 16px"}}>
-    <h3 style={{fontSize:16,fontWeight:700,color:theme.text,margin:"0 0 12px"}}>🍽️ 今日餐食</h3>
-    <div style={{display:"flex",flexDirection:"column",gap:10}}>
-      {food.map((item,i)=>(<div key={i} style={{background:theme.card,borderRadius:14,padding:"14px 16px",boxShadow:"0 2px 8px rgba(0,0,0,0.05)",border:"1px solid rgba(0,0,0,0.04)",display:"flex",justifyContent:"space-between",alignItems:"center",gap:12}}>
-        <div style={{flex:1}}><div style={{fontSize:15,fontWeight:700,color:theme.text,marginBottom:3}}>{item.name}</div><div style={{fontSize:13,color:theme.textLight,lineHeight:1.4}}>{item.desc}</div></div>
-        <div style={{textAlign:"right",flexShrink:0}}><div style={{fontSize:13,fontWeight:600,color:theme.accent}}>{item.price}</div><div style={{fontSize:11,color:theme.textLight}}>{item.rating}</div></div>
-      </div>))}
-    </div>
-  </div>
-);}
-
-function TipsSection({tips,theme}){if(!tips||!tips.length)return null;return(
-  <div style={{padding:"8px 20px 20px"}}>
-    <h3 style={{fontSize:16,fontWeight:700,color:theme.text,margin:"0 0 12px"}}>💡 行程小 TIPS</h3>
-    <div style={{background:theme.primaryLight,borderRadius:14,padding:"14px 16px",border:`1px solid ${theme.primary}20`}}>
-      {tips.map((tip,i)=>(<div key={i} style={{fontSize:13,color:theme.text,lineHeight:1.6,marginBottom:i<tips.length-1?8:0,paddingBottom:i<tips.length-1?8:0,borderBottom:i<tips.length-1?`1px solid ${theme.primary}15`:"none"}}>{tip}</div>))}
-    </div>
-  </div>
-);}
-
-function PackingList({items,theme}){if(!items||!items.length)return null;return(
-  <div style={{padding:"8px 20px 20px"}}>
-    <h3 style={{fontSize:16,fontWeight:700,color:theme.text,margin:"0 0 12px"}}>🧳 裝備 & 行李清單</h3>
-    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
-      {items.map((item,i)=>(<div key={i} style={{background:theme.card,borderRadius:10,padding:"10px 12px",fontSize:13,color:theme.text,boxShadow:"0 1px 4px rgba(0,0,0,0.04)",border:"1px solid rgba(0,0,0,0.04)"}}>{item.icon} {item.text}</div>))}
-    </div>
-  </div>
-);}
-
-function Closing({closing,theme}){if(!closing)return null;return(
-  <div style={{padding:"8px 20px 32px"}}>
-    <div style={{background:theme.heroGradient,borderRadius:18,padding:"24px 20px",textAlign:"center"}}>
-      <h3 style={{fontSize:18,fontWeight:700,color:"#fff",margin:"0 0 10px"}}>{closing.title}</h3>
-      <p style={{fontSize:14,color:"rgba(255,255,255,0.9)",margin:"0 0 16px",lineHeight:1.7}}>{closing.message}</p>
-      <div style={{fontSize:16,fontWeight:700,color:"#fff"}}>{closing.signoff}</div>
-    </div>
-  </div>
-);}
-
-function App(){
-  const[activeDay,setActiveDay]=useState(0);
-  const trip=TRIP;const t=trip.theme;const currentDay=trip.days[activeDay];
-  return(
-    <div style={{maxWidth:480,margin:"0 auto",background:t.bg,minHeight:"100vh",fontFamily:'-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",sans-serif'}}>
-      <Hero trip={trip}/>
-      <WeatherWidget trip={trip} theme={t}/>
-      <FeeSection fees={trip.fees} theme={t}/>
-      <QualificationSection qualification={trip.qualification} theme={t}/>
-      <DayTabs days={trip.days} activeDay={activeDay} onChange={setActiveDay} theme={t}/>
-      <div style={{height:1,background:`linear-gradient(to right, transparent, ${t.primary}20, transparent)`,margin:"0 20px"}}/>
-      <DayHeader day={currentDay} theme={t}/>
-      <MapSection day={currentDay} theme={t}/>
-      <Timeline schedule={currentDay.schedule} theme={t}/>
-      <FoodSection food={currentDay.food} theme={t}/>
-      <TipsSection tips={currentDay.tips} theme={t}/>
-      {activeDay===0&&<PackingList items={trip.packingList} theme={t}/>}
-      {trip.diveNote&&(
-        <div style={{padding:"4px 20px 12px"}}>
-          <div style={{background:`${t.accent}12`,border:`1px solid ${t.accent}30`,borderRadius:12,padding:"12px 16px",display:"flex",gap:10,alignItems:"flex-start"}}>
-            <span style={{fontSize:18,flexShrink:0,lineHeight:1.3}}>🌊</span>
-            <p style={{fontSize:13,color:t.text,margin:0,lineHeight:1.6}}>{trip.diveNote}</p>
-          </div>
-        </div>
-      )}
-      {(activeDay===0||activeDay===trip.days.length-1)&&<Closing closing={trip.closing} theme={t}/>}
-      <div style={{textAlign:"center",padding:"16px 20px 32px"}}>
-        <div style={{fontSize:11,color:t.textLight}}>✨ Made with Cho-Agent · Travel Itinerary Template</div>
-      </div>
-    </div>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+render();
 </script>
 </body>
 </html>
