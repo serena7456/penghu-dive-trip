@@ -250,6 +250,10 @@ const TRIP={
   ],
   closing:{title:"🤟 潛水安全，快樂回家",message:"南方四島的海底薰衣草森林、壯觀珊瑚礁和豐富魚群，等你來探索。注意安全、尊重海洋、享受每一次下潛！",signoff:"See you underwater! 🦈🫧🌊"},
   diveNote:"⚠️ 以上潛點為預定規劃，實際潛點將依當日風浪狀況及夥伴能力做調整，以潛導現場判斷為準。",
+  contacts:[
+    {role:"帶隊教練",name:"Serena",phone:"0975382650",icon:"👩‍🏫"},
+    {role:"當地潛店",name:"艾潛海洋",phone:"0932902676",icon:"🤿"},
+  ],
   diveSafety:{title:"潛水注意事項",intro:"此活動必須領有國際潛水證照進階以上之合格潛水證照。",
     sections:[
       {title:"🧰 裝備與行前準備",items:["浮力袋 + 線軸與電腦錶為必備物品。黃昏潛及夜潛請準備手電筒。","活動前請維持良好身體狀況，規律作息。仔細維護潛水裝備處於良好狀態。","會暈船者，請自行準備暈船藥，開航半小時前服用；船隻開航前立即整理潛水裝備。"]},
@@ -310,6 +314,11 @@ function render(){
   // Qualification
   const q=T.qualification;
   app.innerHTML+=`<div class="sec"><h3>‼️ ${q.title}</h3><div class="card" style="background:#fef4e8;border-color:rgba(230,126,34,.2)"><div class="qual-grid">${q.items.map(i=>`<div style="font-size:13px;color:#1a1a2e;line-height:1.5">${i.icon} ${i.text}</div>`).join("")}</div>${q.note?`<div style="font-size:12px;color:#5a6a7a;margin-top:10px;padding-top:10px;border-top:1px solid rgba(230,126,34,.15);font-style:italic">📋 ${q.note}</div>`:""}</div></div>`;
+
+  // Contacts
+  if(T.contacts&&T.contacts.length){
+    app.innerHTML+=`<div class="sec"><h3>📞 緊急聯絡資訊</h3><div style="display:flex;flex-direction:column;gap:8px">${T.contacts.map(c=>`<a href="tel:${c.phone}" style="text-decoration:none"><div class="card" style="display:flex;align-items:center;gap:12px"><span style="font-size:26px">${c.icon}</span><div style="flex:1"><div style="font-size:12px;color:#5a6a7a">${c.role}</div><div style="font-size:15px;font-weight:700;color:#1a1a2e">${c.name}</div></div><div style="display:flex;align-items:center;gap:6px;color:#0c2461;font-weight:700;font-size:15px"><span style="font-size:18px">📲</span>${c.phone}</div></div></a>`).join("")}</div></div>`;
+  }
 
   // Tabs
   let tabsH=`<div class="tabs" id="tabs">`;
