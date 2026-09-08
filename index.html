@@ -171,7 +171,7 @@ const TRIP={
   hero:{emoji:"🦈",greeting:"潛進蔚藍，探索台灣最美海底！"},
   info:[
     {icon:"🤿",text:"3 天 7 潛（空氣）"},{icon:"🚢",text:"艾妲號・船宿個人艙"},
-    {icon:"🌊",text:"水溫 25～26°C"},{icon:"📍",text:"嘉義布袋 ⇄ 南方四島"},
+    {icon:"🌊",text:"水溫 25～26°C"},{icon:"📍",text:"嘉義公主遊艇碼頭 ⇄ 南方四島"},
   ],
   fees:{
     included:["艾妲號個人艙 2 晚","3 天 7 潛（空氣瓶）","潛水期間早餐 ×2 + 午餐 ×3 + 晚餐 ×2","嘉義公主遊艇碼頭 ⇄ 澎湖 交通船","旅行社責任險 250 萬"],
@@ -183,57 +183,63 @@ const TRIP={
     note:"潛水店將依照大家能力安排潛點",
   },
   days:[
-    {date:"9/12（五）",label:"DAY 1",title:"嘉義出港・南方四島初潛",subtitle:"登船啟航，直奔蔚藍深處 🚢 今日 2 潛",diveCount:2,
-      mapCenter:{lat:23.32,lng:119.90,zoom:9},
-      stats:[{label:"今日潛數",value:"2 潛",icon:"🤿"},{label:"航行距離",value:"~60 km",icon:"🚢"},{label:"航程時間",value:"~2.5 hr",icon:"⏱️"}],
+    {date:"9/12（六）",label:"DAY 1",title:"嘉義出港・南方四島雙潛",subtitle:"由嘉義公主遊艇碼頭出發，東西吉／鋤頭嶼海域潛水後前往七美 🚢 今日 2 潛",diveCount:2,
+      mapCenter:{lat:23.30,lng:119.78,zoom:9},
+      stats:[{label:"今日潛數",value:"2 潛",icon:"🤿"},{label:"累計潛數",value:"2 / 7",icon:"📊"},{label:"晚間停靠",value:"七美",icon:"🏝️"}],
       schedule:[
-        {time:"08:30",title:"開始登船 & 裝備組裝",icon:"🧰",desc:"嘉義公主遊艇碼頭（布袋港）登船，整理個人裝備、確認氣瓶、BCD、電腦錶設定",tag:"交通",coords:{lat:23.3748,lng:120.1625}},
-        {time:"08:50",title:"啟航！前往南方四島",icon:"🚢",desc:"航程約 2～2.5 小時，可在船上休息或欣賞海景",tag:"交通",coords:{lat:23.32,lng:119.92}},
-        {time:"11:30",title:"第 1 潛｜東吉燈塔外礁 🫧",icon:"🤿",desc:"南方四島首潛！東吉嶼燈塔外側礁區，珊瑚覆蓋率極高，暖身適應船潛節奏",tag:"潛水",coords:{lat:23.2583,lng:119.6694}},
-        {time:"12:30",title:"午餐（船上簡餐）",icon:"🍱",desc:"水面休息，補充水分和能量",tag:"美食",coords:{lat:23.2583,lng:119.6694}},
-        {time:"14:00",title:"第 2 潛｜鋤頭嶼古城牆 🫧",icon:"🤿",desc:"鋤頭嶼古城牆地形，壯觀的岩壁結構搭配豐富軟珊瑚",tag:"潛水",coords:{lat:23.2583,lng:119.6361}},
-        {time:"16:00",title:"水面休息 & 自由時間",icon:"☀️",desc:"整理裝備、寫潛水日誌、在甲板上吹風看海",tag:"休息",coords:{lat:23.2400,lng:119.5500}},
-        {time:"17:30",title:"入港七美",icon:"🏝️",desc:"艾妲號停靠七美港，準備上岸",tag:"交通",coords:{lat:23.2069,lng:119.4289}},
-        {time:"18:30",title:"岸上晚餐（七美）",icon:"🦞",desc:"七美島上海鮮餐廳，享受在地鮮味",tag:"美食",coords:{lat:23.2069,lng:119.4289}},
-        {time:"20:00",title:"回船休息",icon:"🛏️",desc:"回到艾妲號個人艙，養精蓄銳迎接明天 3 潛日！",tag:"住宿",coords:{lat:23.2069,lng:119.4289}},
+        {time:"08:30",title:"開放登船 & 裝備整理",icon:"🧰",desc:"嘉義公主遊艇碼頭登船，整理個人裝備並完成出航前準備。",tag:"交通",coords:{lat:23.3748,lng:120.1625}},
+        {time:"09:00",title:"準時出發｜前往澎湖海域",icon:"🚢",desc:"艾妲號由嘉義公主遊艇碼頭出發，前往澎湖南方四島海域。",tag:"交通",coords:{lat:23.30,lng:119.80}},
+        {time:"12:00",title:"第 1 潛｜東西吉廊道／鋤頭嶼南古城牆 🫧",icon:"🤿",desc:"預計潛點二擇一，實際依當日天候、海況、潮流與船長安全評估安排。",tag:"潛水"},
+        {time:"13:00",title:"東吉午餐｜海鮮麵",icon:"🍜",desc:"於東吉用午餐，補充體力並進行水面休息。",tag:"美食",coords:{lat:23.2583,lng:119.6694}},
+        {time:"15:00",title:"第 2 潛｜西吉斷層／鋤頭嶼古城牆 🫧",icon:"🤿",desc:"預計潛點二擇一，實際依現場條件彈性調整。",tag:"潛水"},
+        {time:"16:00",title:"巡航前往七美",icon:"🚢",desc:"第二潛結束後巡航前往七美。",tag:"交通",coords:{lat:23.2069,lng:119.4289}},
+        {time:"18:30",title:"七美晚餐",icon:"🍽️",desc:"於七美用晚餐。",tag:"美食",coords:{lat:23.2069,lng:119.4289}},
+        {time:"20:30",title:"自由活動／KTV 歡唱",icon:"🎤",desc:"晚間自由活動，可於船上 KTV 歡唱。",tag:"休息",coords:{lat:23.2069,lng:119.4289}},
+        {time:"22:00",title:"KTV 結束・休息",icon:"🛏️",desc:"結束晚間活動，休息準備隔日三潛。",tag:"住宿",coords:{lat:23.2069,lng:119.4289}},
       ],
-      food:[{name:"船上簡餐",desc:"艾妲號廚房準備，方便快速補充體力",price:"含在費用",rating:"🚢 船上"},{name:"七美岸上晚餐",desc:"七美在地海鮮餐廳，新鮮漁獲",price:"含在費用",rating:"🏝️ 七美"}],
-      tips:["🕐 9/12 8:30 開始登船，8:50 啟程，請提早抵達！遲到船不等人","🚗 嘉義公主遊艇碼頭有免費停車，自駕很方便","💊 會暈船的話，建議上船前 30 分鐘先吃暈船藥","🫧 第一潛先做好中性浮力 check，適應船潛節奏","🍽️ 早餐自理，建議在嘉義先吃飽再上船"],
+      food:[{name:"東吉午餐｜海鮮麵",desc:"船家安排於東吉享用海鮮麵",price:"依行程安排",rating:"🏝️ 東吉"},{name:"七美晚餐",desc:"晚間於七美用餐",price:"依行程安排",rating:"🏝️ 七美"}],
+      tips:["🕐 9/12 08:30 開放登船、09:00 準時出發，請務必預留裝備搬運與組裝時間","💊 會暈船者可依個人用藥需求提早準備暈船藥","🤿 當日兩潛皆為預計潛點，船長與工作人員會依海況調整","🎤 KTV 20:30 開始、22:00 結束"],
     },
-    {date:"9/13（六）",label:"DAY 2",title:"潛好潛滿！三潛日",subtitle:"上午兩潛、下午一潛，盡情探索南方四島海底世界 🐠",diveCount:3,
-      mapCenter:{lat:23.24,lng:119.58,zoom:11},
-      stats:[{label:"今日潛數",value:"3 潛",icon:"🤿"},{label:"累計潛數",value:"5 / 7",icon:"📊"},{label:"水溫預估",value:"25~26°C",icon:"🌡️"}],
+    {date:"9/13（日）",label:"DAY 2",title:"七美海域三潛・環島自由活動",subtitle:"離塭、沈船與鐘仔礁三潛，下午返七美環島 🐠",diveCount:3,
+      mapCenter:{lat:23.22,lng:119.50,zoom:11},
+      stats:[{label:"今日潛數",value:"3 潛",icon:"🤿"},{label:"累計潛數",value:"5 / 7",icon:"📊"},{label:"下午活動",value:"七美環島",icon:"🛵"}],
       schedule:[
-        {time:"06:30",title:"早餐（船上簡餐）",icon:"☀️",desc:"早起吃早餐，準備迎接充實的三潛日",tag:"美食",coords:{lat:23.2069,lng:119.4289}},
-        {time:"07:30",title:"出港前往潛點",icon:"🚢",desc:"離開七美港，前往今日潛點區域",tag:"交通",coords:{lat:23.2400,lng:119.5500}},
-        {time:"08:30",title:"第 3 潛｜沈船 🫧",icon:"🤿",desc:"清晨潛！探索水下沈船遺跡，能見度通常最佳的時段",tag:"潛水",coords:{lat:23.2583,lng:119.6694}},
-        {time:"10:00",title:"水面休息",icon:"☕",desc:"水面休息時間至少 1 小時，喝水、吃點心、聊潛水",tag:"休息",coords:{lat:23.2583,lng:119.6500}},
-        {time:"11:00",title:"第 4 潛｜二塭 🫧",icon:"🤿",desc:"二塭潛點，地形變化豐富，留意水流方向",tag:"潛水",coords:{lat:23.2639,lng:119.6472}},
-        {time:"12:30",title:"午餐（船上簡餐）",icon:"🍱",desc:"補充能量，好好休息，下午還有一潛",tag:"美食",coords:{lat:23.2500,lng:119.6000}},
-        {time:"14:30",title:"第 5 潛｜沈船 🫧",icon:"🤿",desc:"下午再訪沈船潛點，不同時段的光線帶來不一樣的水下氛圍",tag:"潛水",coords:{lat:23.2200,lng:119.5000}},
-        {time:"16:00",title:"裝備整理 & 自由時間",icon:"🧹",desc:"清洗裝備、寫潛水日誌、甲板上看夕陽",tag:"休息",coords:{lat:23.2069,lng:119.4289}},
-        {time:"17:30",title:"入港七美",icon:"🏝️",desc:"返回七美港停靠",tag:"交通",coords:{lat:23.2069,lng:119.4289}},
-        {time:"18:30",title:"岸上晚餐（七美）",icon:"🦞",desc:"第二晚七美晚餐，試試不同餐廳",tag:"美食",coords:{lat:23.2069,lng:119.4289}},
-        {time:"20:00",title:"自由活動",icon:"🌙",desc:"散步七美、觀星、船上歡唱 KTV 或打麻將",tag:"休息",coords:{lat:23.2069,lng:119.4289}},
+        {time:"07:30",title:"早餐",icon:"🍳",desc:"早餐後準備今日三潛行程。",tag:"美食",coords:{lat:23.2069,lng:119.4289}},
+        {time:"08:20",title:"集合出發",icon:"🚢",desc:"集合後由七美出發前往今日潛點。",tag:"交通",coords:{lat:23.2069,lng:119.4289}},
+        {time:"09:00",title:"第 3 潛｜離塭 🫧",icon:"🤿",desc:"今日第一潛預計安排離塭。",tag:"潛水"},
+        {time:"12:00",title:"第 4 潛｜沈船潛水 🫧",icon:"🤿",desc:"視當日狀況於「七美一號／凌雲艦／滿星丸」擇一安排。",tag:"潛水"},
+        {time:"13:00",title:"午餐",icon:"🍱",desc:"第四潛後用午餐並補充體力。",tag:"美食"},
+        {time:"14:30",title:"第 5 潛｜鐘仔礁 🫧",icon:"🤿",desc:"今日第三潛預計安排鐘仔礁。",tag:"潛水"},
+        {time:"潛後",title:"返航七美",icon:"🚢",desc:"第五潛結束後返航七美。",tag:"交通",coords:{lat:23.2069,lng:119.4289}},
+        {time:"16:00",title:"七美陸遊環島・自由活動",icon:"🛵",desc:"上岸後進行七美環島，自由活動。",tag:"景點",coords:{lat:23.2069,lng:119.4289}},
+        {time:"18:30",title:"七美晚餐",icon:"🍽️",desc:"於七美用晚餐。",tag:"美食",coords:{lat:23.2069,lng:119.4289}},
+        {time:"20:30",title:"自由活動／KTV 歡唱",icon:"🎤",desc:"晚間自由活動，可於船上 KTV 歡唱。",tag:"休息",coords:{lat:23.2069,lng:119.4289}},
+        {time:"22:00",title:"KTV 結束・休息",icon:"🛏️",desc:"結束晚間活動，休息準備最後一天。",tag:"住宿",coords:{lat:23.2069,lng:119.4289}},
       ],
-      food:[{name:"船上早餐",desc:"簡單但足以補充體力的早餐",price:"含在費用",rating:"🚢 船上"},{name:"船上午餐",desc:"船上簡餐，方便水面休息時補給",price:"含在費用",rating:"🚢 船上"},{name:"七美岸上晚餐",desc:"再訪七美在地餐廳",price:"含在費用",rating:"🏝️ 七美"}],
-      tips:["🤿 今天 3 潛，注意控制免停留時間和氮醉風險","💧 水面休息要多喝水！船上脫水比陸地更快","📸 帶水下相機的話，清晨那潛光線最美","🌅 七美的星空非常乾淨，晚上記得抬頭看","🫧 如果計畫額外加潛（自費），跟潛導提前說"],
+      food:[{name:"早餐",desc:"07:30 早餐",price:"依行程安排",rating:"🚢 行程餐食"},{name:"午餐",desc:"第四潛後用餐",price:"依行程安排",rating:"🚢 行程餐食"},{name:"七美晚餐",desc:"18:30 七美晚餐",price:"依行程安排",rating:"🏝️ 七美"}],
+      tips:["🤿 今日共 3 潛，請持續留意電腦錶、殘壓與免減壓時間","🚢 沈船潛點將由七美一號、凌雲艦、滿星丸中依現況擇一","🛵 16:00 安排七美陸遊環島與自由活動","🎤 KTV 20:30 開始、22:00 結束"],
     },
-    {date:"9/14（日）",label:"DAY 3",title:"最後兩潛・返航嘉義",subtitle:"上午兩潛後返航，帶著滿滿回憶回家 🏠",diveCount:2,
-      mapCenter:{lat:23.30,lng:119.85,zoom:9},
-      stats:[{label:"今日潛數",value:"2 潛",icon:"🤿"},{label:"累計潛數",value:"7 / 7 ✅",icon:"📊"},{label:"返航抵達",value:"~14:30",icon:"🏠"}],
-      schedule:[
-        {time:"06:30",title:"早餐（船上簡餐）",icon:"☀️",desc:"最後一天，把握每一刻海上時光",tag:"美食",coords:{lat:23.2069,lng:119.4289}},
-        {time:"07:30",title:"出港前往潛點",icon:"🚢",desc:"前往今日潛點",tag:"交通",coords:{lat:23.2400,lng:119.5500}},
-        {time:"08:00",title:"第 6 潛｜沈船 🫧",icon:"🤿",desc:"最後一天的沈船探索，把握清晨最佳能見度",tag:"潛水",coords:{lat:23.2583,lng:119.6694}},
-        {time:"09:30",title:"水面休息",icon:"☕",desc:"最後一次水面休息，補充水分",tag:"休息",coords:{lat:23.2583,lng:119.6500}},
-        {time:"10:30",title:"第 7 潛｜東吉之狼 🫧（最終潛！）",icon:"🤿",desc:"壓軸潛點！東吉之狼，把最震撼的畫面收進記憶裡 🫶",tag:"潛水",coords:{lat:23.2583,lng:119.6361}},
-        {time:"12:00",title:"午餐（船上簡餐）& 返航",icon:"🍱",desc:"收拾裝備、吃午餐、開始返航嘉義",tag:"交通",coords:{lat:23.30,lng:119.80}},
-        {time:"14:30",title:"抵達嘉義布袋港",icon:"🏠",desc:"回到陸地！拆裝卸貨，互道珍重",tag:"交通",coords:{lat:23.3748,lng:120.1625}},
-        {time:"15:00",title:"解散 & 歸途",icon:"🚗",desc:"各自返家，晚餐自理。記得最後一潛後 24 小時內不搭飛機！",tag:"交通",coords:{lat:23.3748,lng:120.1625}},
+    {date:"9/14（一）",label:"DAY 3",title:"最終雙潛・兩套方案機動執行",subtitle:"第三天依天候、海況、潮流及船長評估，採早班沈船或東吉雙潛方案 🤿",diveCount:2,
+      stats:[{label:"今日潛數",value:"2 潛",icon:"🤿"},{label:"累計潛數",value:"7 / 7 ✅",icon:"📊"},{label:"執行方式",value:"2 套方案",icon:"🔀"}],
+      alternatives:[
+        {name:"方案一｜早班沈船行程",emoji:"🌅",schedule:[
+          {time:"06:00",title:"集合出發",icon:"🚢",desc:"集合後出發前往早班沈船潛點。",tag:"交通"},
+          {time:"06:10",title:"第 6 潛｜沈船潛水 🫧",icon:"🤿",desc:"預計潛點：七美一號／凌雲艦，依當日狀況擇一安排。",tag:"潛水"},
+          {time:"07:30",title:"早餐",icon:"🍳",desc:"第六潛後用早餐。",tag:"美食"},
+          {time:"09:00",title:"第 7 潛｜東吉之狼 🫧",icon:"🤿",desc:"本趟第七潛預計安排東吉之狼。",tag:"潛水"},
+          {time:"潛後",title:"返航嘉義公主遊艇碼頭",icon:"🚢",desc:"完成第七潛後返航嘉義公主遊艇碼頭。",tag:"交通"},
+        ]},
+        {name:"方案二｜東吉雙潛行程",emoji:"☀️",schedule:[
+          {time:"07:00",title:"早餐",icon:"🍳",desc:"早餐後準備東吉雙潛行程。",tag:"美食"},
+          {time:"08:00",title:"集合出發",icon:"🚢",desc:"集合後出發前往東吉海域。",tag:"交通"},
+          {time:"09:00",title:"第 6 潛｜東吉之狼 🫧",icon:"🤿",desc:"第六潛預計安排東吉之狼。",tag:"潛水"},
+          {time:"11:00",title:"第 7 潛｜東吉北燈塔外礁 🫧",icon:"🤿",desc:"本趟最終潛預計安排東吉北燈塔外礁。",tag:"潛水"},
+          {time:"12:00",title:"午餐｜船上享用",icon:"🍱",desc:"午餐準備於船上享用。",tag:"美食"},
+          {time:"餐後",title:"返航嘉義公主遊艇碼頭",icon:"🚢",desc:"午餐後返航嘉義公主遊艇碼頭。",tag:"交通"},
+        ]},
       ],
-      food:[{name:"船上早餐 & 午餐",desc:"最後的船上餐食",price:"含在費用",rating:"🚢 船上"},{name:"晚餐自理",desc:"回到陸地後自由覓食",price:"自費",rating:"🏠 嘉義"}],
-      tips:["✈️ 最後一潛後 18～24 小時內請勿搭飛機！","🚗 如果開車回程，注意潛水後的疲勞駕駛","📱 上岸後記得傳平安訊息給家人","🧹 裝備回家後要用淡水徹底清洗、陰乾","📝 趁記憶鮮明，把潛水日誌補齊"],
+      food:[{name:"方案一",desc:"07:30 早餐；完成第七潛後返航",price:"依船長決定",rating:"🌅 早班沈船"},{name:"方案二",desc:"07:00 早餐、12:00 船上午餐；午餐後返航",price:"依船長決定",rating:"☀️ 東吉雙潛"}],
+      tips:["🔀 第三天不固定採單一路線，將依天候、海況、潮流與船長安全評估選擇方案一或方案二","🌅 方案一 06:00 集合，06:10 即進行第六潛，前一晚請提早整理好裝備","☀️ 方案二為東吉雙潛，12:00 船上午餐後返航","✈️ 多日重複潛水後，搭機前請依潛水電腦與訓練機構建議保留足夠水面間隔"],
     },
   ],
   packingList:[
@@ -252,7 +258,7 @@ const TRIP={
     provided:["沐浴乳","洗髮精","毛巾"],
   },
   closing:{title:"🤟 潛水安全，快樂回家",message:"南方四島的海底薰衣草森林、壯觀珊瑚礁和豐富魚群，等你來探索。注意安全、尊重海洋、享受每一次下潛！",signoff:"See you underwater! 🦈🫧🌊"},
-  diveNote:"⚠️ 以上潛點為預定規劃，實際潛點將依當日風浪狀況及夥伴能力做調整，以潛導現場判斷為準。",
+  diveNote:"⚠️ 以上潛點皆為預計安排，實際行程將依當日天候、風浪、潮流、能見度及船長安全評估調整；如海況不適合原訂潛點，將以安全為最高原則更換潛點或調整潛水時間。",
   contacts:[
     {role:"帶隊教練",name:"Serena",phone:"0975382650",icon:"👩‍🏫"},
     {role:"當地潛店",name:"艾潛海洋",phone:"0932902676",icon:"🤿"},
@@ -339,21 +345,36 @@ function render(){
   dc+=`</div>`;
 
   // Map
-  const locs=day.schedule.filter(s=>s.coords);const u=[];const seen=new Set();
-  locs.forEach(l=>{const k=l.coords.lat+","+l.coords.lng;if(!seen.has(k)){seen.add(k);u.push(l);}});
-  const mc=day.mapCenter||{lat:23.25,lng:119.6,zoom:10};
-  const mapsUrl=`https://www.google.com/maps/dir/${u.map(l=>l.coords.lat+","+l.coords.lng).join("/")}/`;
-  dc+=`<div class="sec"><h3>🗺️ 今日路線導覽</h3><div class="map-wrap"><div class="map-iframe"><iframe src="https://maps.google.com/maps?q=${mc.lat},${mc.lng}&z=${mc.zoom}&output=embed" width="100%" height="200" style="border:0;display:block" allowfullscreen loading="lazy"></iframe></div><div class="card map-route"><div style="font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:10px">📍 路線順序</div>`;
-  u.forEach((loc,i)=>{dc+=`<div style="display:flex;align-items:center;gap:10px"><div style="display:flex;flex-direction:column;align-items:center;width:28px;flex-shrink:0"><div class="route-num">${i+1}</div>${i<u.length-1?`<div class="route-line"></div>`:""}</div><div style="flex:1;padding-bottom:${i<u.length-1?2:0}px"><span style="font-size:14px">${loc.icon} </span><span style="font-size:13px;color:#1a1a2e">${loc.title}</span></div></div>`;});
-  dc+=`<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="map-btn">🗺️ 在 Google Maps 開啟完整路線</a></div></div></div>`;
+  if(day.schedule){
+    const locs=day.schedule.filter(s=>s.coords);const u=[];const seen=new Set();
+    locs.forEach(l=>{const k=l.coords.lat+","+l.coords.lng;if(!seen.has(k)){seen.add(k);u.push(l);}});
+    const mc=day.mapCenter||{lat:23.25,lng:119.6,zoom:10};
+    if(u.length){
+      const mapsUrl=`https://www.google.com/maps/dir/${u.map(l=>l.coords.lat+","+l.coords.lng).join("/")}/`;
+      dc+=`<div class="sec"><h3>🗺️ 今日路線導覽</h3><div class="map-wrap"><div class="map-iframe"><iframe src="https://maps.google.com/maps?q=${mc.lat},${mc.lng}&z=${mc.zoom}&output=embed" width="100%" height="200" style="border:0;display:block" allowfullscreen loading="lazy"></iframe></div><div class="card map-route"><div style="font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:10px">📍 路線順序</div>`;
+      u.forEach((loc,i)=>{dc+=`<div style="display:flex;align-items:center;gap:10px"><div style="display:flex;flex-direction:column;align-items:center;width:28px;flex-shrink:0"><div class="route-num">${i+1}</div>${i<u.length-1?`<div class="route-line"></div>`:""}</div><div style="flex:1;padding-bottom:${i<u.length-1?2:0}px"><span style="font-size:14px">${loc.icon} </span><span style="font-size:13px;color:#1a1a2e">${loc.title}</span></div></div>`;});
+      dc+=`<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="map-btn">🗺️ 在 Google Maps 開啟完整路線</a></div></div></div>`;
+    }
+  }
 
   // Timeline
-  dc+=`<div class="sec"><h3>📋 當日行程 <span style="font-size:12px;font-weight:400;color:#5a6a7a">（時間供參考，實際依當天情況安排）</span></h3><div style="position:relative"><div class="tl-line"></div>`;
-  day.schedule.forEach((item,i)=>{
-    const tc=TC[item.tag]||{b:"#f5f5f5",t:"#666"};const isDive=item.tag==="潛水";
-    dc+=`<div class="tl-item"><div class="tl-time">${item.time}</div><div class="tl-dot${isDive?" dive":""}"></div><div class="tl-card${isDive?" dive":""}"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap"><span class="tl-icon">${item.icon}</span><span class="tl-title">${item.title}</span>${item.tag?`<span class="tag" style="background:${tc.b};color:${tc.t}">${item.tag}</span>`:""}</div><p class="tl-desc">${item.desc}</p></div></div>`;
-  });
-  dc+=`</div></div>`;
+  dc+=`<div class="sec"><h3>📋 當日行程 <span style="font-size:12px;font-weight:400;color:#5a6a7a">（時間與潛點依船家、海況及船長安全評估調整）</span></h3>`;
+  const renderSchedule=(schedule)=>{
+    let h=`<div style="position:relative"><div class="tl-line"></div>`;
+    schedule.forEach((item,i)=>{
+      const tc=TC[item.tag]||{b:"#f5f5f5",t:"#666"};const isDive=item.tag==="潛水";
+      h+=`<div class="tl-item"><div class="tl-time">${item.time}</div><div class="tl-dot${isDive?" dive":""}"></div><div class="tl-card${isDive?" dive":""}"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap"><span class="tl-icon">${item.icon}</span><span class="tl-title">${item.title}</span>${item.tag?`<span class="tag" style="background:${tc.b};color:${tc.t}">${item.tag}</span>`:""}</div><p class="tl-desc">${item.desc}</p></div></div>`;
+    });
+    return h+`</div>`;
+  };
+  if(day.alternatives){
+    day.alternatives.forEach((alt,idx)=>{
+      dc+=`<div class="card" style="margin-bottom:${idx<day.alternatives.length-1?14:0}px;border:2px solid rgba(12,36,97,.12)"><div style="font-size:16px;font-weight:800;color:#0c2461;margin-bottom:12px">${alt.emoji||"🔀"} ${alt.name}</div>${renderSchedule(alt.schedule)}</div>`;
+    });
+  }else{
+    dc+=renderSchedule(day.schedule);
+  }
+  dc+=`</div>`;
 
   // Food
   if(day.food&&day.food.length){
